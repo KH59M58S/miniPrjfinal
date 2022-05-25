@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.kh.util.Util;
-import com.swy.db.OracleDb;
+import com.swy.db.OracleDB;
 
 public class FindLecture {
 	
@@ -52,9 +52,9 @@ public class FindLecture {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			OracleDb.close(conn);
-			OracleDb.close(pstmt);
-			OracleDb.close(rs);
+			OracleDB.close(conn);
+			OracleDB.close(pstmt);
+			OracleDB.close(rs);
 		}
 	}
 	
@@ -110,9 +110,9 @@ public class FindLecture {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			OracleDb.close(conn);
-			OracleDb.close(pstmt);
-			OracleDb.close(rs);
+			OracleDB.close(conn);
+			OracleDB.close(pstmt);
+			OracleDB.close(rs);
 		}
 	
 	}
@@ -155,9 +155,9 @@ public class FindLecture {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			OracleDb.close(conn);
-			OracleDb.close(pstmt);
-			OracleDb.close(rs);
+			OracleDB.close(conn);
+			OracleDB.close(pstmt);
+			OracleDB.close(rs);
 		}
 	
 	}

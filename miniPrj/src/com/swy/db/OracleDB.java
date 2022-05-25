@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class OracleDb {
+public class OracleDB {
 	
 	public static Connection getConnection() {
 		String driver = "oracle.jdbc.driver.OracleDriver";

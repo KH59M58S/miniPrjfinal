@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.kh.util.Util;
-import com.swy.db.OracleDb;
+import com.swy.db.OracleDB;
 
 public class RegistrationLecture {
 	
@@ -63,8 +63,8 @@ public class RegistrationLecture {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			OracleDb.close(conn);
-			OracleDb.close(pstmt);
+			OracleDB.close(conn);
+			OracleDB.close(pstmt);
 		}
 		
 		System.out.println("실패");

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import com.kh.lecture.LectureOracle;
 import com.kh.util.Util;
-import com.swy.db.OracleDb;
+import com.swy.db.OracleDB;
 
 public class Admin {
 
@@ -42,8 +42,8 @@ public class Admin {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			OracleDb.close(conn);
-			OracleDb.close(pstmt);
+			OracleDB.close(conn);
+			OracleDB.close(pstmt);
 		}
 
 		return false;
@@ -80,9 +80,9 @@ public class Admin {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			OracleDb.close(conn);
-			OracleDb.close(pstmt);
-			OracleDb.close(rs);
+			OracleDB.close(conn);
+			OracleDB.close(pstmt);
+			OracleDB.close(rs);
 		}
 
 		System.out.println("로그인 실패");
