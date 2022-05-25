@@ -108,6 +108,15 @@ public class Screen {
 		System.out.println("3. 뒤로가기");
 	}
 	
+
+	public void proAnnounce() {
+		
+	}
+//	1. 메인화면에서 교수 로그인
+//	2. 교수 화면 메인 
+//	 1) 출석클래스 
+//     2) 강의관련클래스 
+//     3) 학과공지클래스
 	
 	
 	
