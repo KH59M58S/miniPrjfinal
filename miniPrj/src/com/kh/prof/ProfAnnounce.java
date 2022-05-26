@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import com.kh.admin.Main;
 import com.kh.util.Util;
 import com.swy.db.OracleDB;
 
@@ -15,23 +16,26 @@ public class ProfAnnounce {
 	public static int pno;
 	//교수 공지사항 선택 시 뜨는 화면
 	public void board() {
-		System.out.println("==== 학과 공지 ====");
-		System.out.println("1. 공지사항 목록");
-		System.out.println("2. 공지사항 작성");
-		System.out.println("3. 공지사항 삭제");
-		System.out.println("4. 공지사항 수정");
-		System.out.println("5. 뒤로가기");
-		
-        input = Util.scInt();
-        
-    switch (input) {
-    case 1 : boardlist();break;
-    case 2 : boardwrite();break;
-    case 3 : boarddelete();break;
-    case 4 : boardupdate();break;
-    case 5 : System.out.println("뒤로가기");break;
-    default : System.out.println("잘못선택하셨습니다...");
-    }
+		while(true) {
+			
+			System.out.println("==== 학과 공지 ====");
+			System.out.println("1. 공지사항 목록");
+			System.out.println("2. 공지사항 작성");
+			System.out.println("3. 공지사항 삭제");
+			System.out.println("4. 공지사항 수정");
+			System.out.println("5. 뒤로가기");
+			
+			input = Util.scInt();
+			
+			switch (input) {
+			case 1 : boardlist();break;
+			case 2 : boardwrite();break;
+			case 3 : boarddelete();break;
+			case 4 : boardupdate();break;
+			case 5 : return;
+			default : System.out.println("잘못선택하셨습니다...");
+			}
+		}
     
 	}
 	
@@ -83,10 +87,18 @@ public class ProfAnnounce {
 		ResultSet rs = pstmt2.executeQuery();
 		
 		while(rs.next()) {
+			System.out.println("글번호" + "|" + "글제목" + "|" + "내용");
 			System.out.print(rs.getInt("글번호"));
+			System.out.print("|");
 			System.out.print(rs.getString("글제목"));
+			System.out.print("|");
 			System.out.print(rs.getString("내용"));
+			System.out.println("\n===============\n");
+			
 		}
+		
+		
+		
 		
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -174,25 +186,37 @@ public class ProfAnnounce {
 //        System.out.println("수정하려는 글번호를 입력하세요.");
 //        int input = Util.scInt();
     //수정내용 얻기
+        
         System.out.println("\n"+"수정 내용을 입력하세요.");
         String upcont = Util.sc.nextLine();
+        System.out.println(" ***** ::: " + upcont );
+        //tlfgodgowntpdy ~실행해주세요 ~
+        // 자 그럼이제 ,,, 여기까찌는 ㅇㅋ 확인했으니,,
+        //아래 어딘가엣 ㅓ걸리는거같아요
+        //범유ㅟ를 좁혀볼게요
         
     //수정내용 쿼리 날리기
         String sql = "UPDATE PROFBOARD SET  PRO_CONTENT = ? WHERE PRO_NO = ?";
         PreparedStatement ptst = null;
         try {
+        	
             ptst = conn.prepareStatement(sql);
             ptst.setString(1, upcont);
             ptst.setInt(2, pno);
-            
             int rs = ptst.executeUpdate();
-            
-            if(rs ==1) {
+            if(rs == 1) {
                 System.out.println("공지사항 수정완료 !!!");
-            }else System.out.println("공지사항 수정실패 ...");
+            }
+            else {
+            	System.out.println("공지사항 수정실패 ...");
+            }
+         
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+    
         
         
     }
@@ -202,4 +226,6 @@ public class ProfAnnounce {
     	return;
     }
 	
+
+    
 }
