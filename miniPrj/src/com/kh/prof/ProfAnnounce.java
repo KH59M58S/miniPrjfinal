@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import com.kh.util.Util;
 import com.swy.db.OracleDB;
 
 public class ProfAnnounce {
 
+	public static int input;
+	public static int pno;
 	//교수 공지사항 선택 시 뜨는 화면
 	public void board() {
 		System.out.println("==== 학과 공지 ====");
@@ -19,7 +22,7 @@ public class ProfAnnounce {
 		System.out.println("4. 공지사항 수정");
 		System.out.println("5. 뒤로가기");
 		
-        int input = Util.scInt();
+        input = Util.scInt();
         
     switch (input) {
     case 1 : boardlist();break;
@@ -48,7 +51,17 @@ public class ProfAnnounce {
 		ResultSet rs = pstmt.executeQuery();
 		
 		while(rs.next()) {
-			System.out.print(rs.getInt("글번호") +". " + rs.getString("글제목") + " (" + rs.getDate("작성일")+")" +"\n");
+			int proNo = rs.getInt("글번호");
+			String proTitle = rs.getString("글제목");
+			Timestamp proDate = rs.getTimestamp("작성일");
+			
+			System.out.print(proNo);
+			System.out.print("|");
+			System.out.print(proTitle);
+			System.out.print("|");
+			System.out.print(proDate);
+			System.out.print("\n");
+//			System.out.print(rs.getInt("글번호") +". " + rs.getString("글제목") + " (" + rs.getDate("작성일")+")" +"\n");
 //			System.out.print(rs.getString("글제목"));
 //			System.out.println(rs.getDate("작성일"));
 		}
@@ -59,7 +72,7 @@ public class ProfAnnounce {
 	
 	// 공지사항 선택해서 읽기 ******실행 OK
 	System.out.println(">>원하는 글의 번호 선택하세요");
-	int pno = Util.scInt();
+	pno = Util.scInt();
 	
 	String sql2 ="SELECT PRO_NO 글번호, PRO_TITLE 글제목, PRO_CONTENT 내용 FROM (SELECT ROWNUM RN, P.* FROM PROFBOARD P)\r\n"
 			+ "WHERE PRO_NO = ?";
@@ -100,7 +113,7 @@ public class ProfAnnounce {
     //DB에 작성하기
         String sql = "INSERT INTO PROFBOARD(PRO_NO , PRO_TITLE, PRO_CONTENT, P_NO, D_NO) "
         		+ "VALUES(PROFBOARD_NO.NEXTVAL,?,?,?,?)";
-        PreparedStatement pstmt;
+        PreparedStatement pstmt = null;
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, title);
@@ -122,19 +135,19 @@ public class ProfAnnounce {
     }
 	
 	
-	//3. 공지사항 삭제
+	//3. 공지사항 삭제*********실행OK
     public void boarddelete() {
     //DB얻어놓음    
         System.out.println("====공지사항 삭제====");
     //글목록 보여주기
         boardlist();
     //글 선택(PRO_NO로 선택)
-        System.out.println("삭제하실 글번호를 입력하세요.");
+        System.out.println("\n>>삭제하실 글번호를 입력하세요.");
         int input = Util.scInt();
         
     //삭제쿼리날리기
         String sql = "DELETE FROM PROFBOARD WHERE PRO_NO = ?";
-        PreparedStatement pstmt;
+        PreparedStatement pstmt = null;
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, input);
@@ -158,19 +171,19 @@ public class ProfAnnounce {
     //글목록 보여주기
         boardlist();
     //글 선택(PRO_NO로 선택)
-        System.out.println("수정하려는 글번호를 입력하세요.");
-        int input = Util.scInt();
+//        System.out.println("수정하려는 글번호를 입력하세요.");
+//        int input = Util.scInt();
     //수정내용 얻기
-        System.out.println("수정 내용을 입력하세요.");
-        String upcon = Util.sc.nextLine();
+        System.out.println("\n"+"수정 내용을 입력하세요.");
+        String upcont = Util.sc.nextLine();
         
     //수정내용 쿼리 날리기
-        String sql = "UPDATE PROFBOARD SET PRO_CONTENT = ? WHERE PRO_NO = ?";
-        PreparedStatement ptst;
+        String sql = "UPDATE PROFBOARD SET  PRO_CONTENT = ? WHERE PRO_NO = ?";
+        PreparedStatement ptst = null;
         try {
             ptst = conn.prepareStatement(sql);
-            ptst.setString(1, upcon);
-            ptst.setInt(2, input);
+            ptst.setString(1, upcont);
+            ptst.setInt(2, pno);
             
             int rs = ptst.executeUpdate();
             
@@ -185,5 +198,8 @@ public class ProfAnnounce {
     }
 	//5. 뒤로가기
 	
+    public void back() {
+    	return;
+    }
 	
 }
