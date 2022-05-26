@@ -28,9 +28,9 @@ public class ProfAtt {
 	//3. 해당 강의에 맞는 출석부 조회하기
 	
 	try {
-		String sql = "SELECT * FROM C_1_ATT"; //-----------------------------------------> 질문하기
+		String sql = "SELECT * FROM C_1_ATT"; //바꾸기
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, c_name);
+		
 		rs = pstmt.executeQuery();
 
 		while(rs.next()) {
@@ -72,7 +72,7 @@ public class ProfAtt {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, std_no);
 			ResultSet rs = pstmt.executeQuery();
-			System.out.println(std_no +" 학생의 출석입니다.");
+			System.out.println(std_no +" 번 학생의 출석 : ");
 			
 			
 			while(rs.next()) {
