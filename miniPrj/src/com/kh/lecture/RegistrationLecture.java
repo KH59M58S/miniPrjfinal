@@ -3,11 +3,6 @@ package com.kh.lecture;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.kh.util.Util;
 import com.swy.db.OracleDB;

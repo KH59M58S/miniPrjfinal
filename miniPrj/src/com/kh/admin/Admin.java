@@ -48,7 +48,7 @@ public class Admin {
 		return false;
 	}
 
-	public int login() {
+	public boolean login() {
 
 		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
@@ -73,7 +73,8 @@ public class Admin {
 				String dbpwd = rs.getString(2);
 				if (dbpwd.equalsIgnoreCase(pwd)) {
 					System.out.println("로그인 성공");
-					return dbno;
+					Util.infono = dbno;
+					return true;
 				} 
 			}
 
@@ -86,7 +87,7 @@ public class Admin {
 		}
 
 		System.out.println("로그인 실패");
-		return 0;
+		return false;
 	}
 	
 	
