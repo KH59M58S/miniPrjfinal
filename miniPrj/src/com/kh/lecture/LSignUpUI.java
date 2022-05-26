@@ -7,18 +7,20 @@ public class LSignUpUI {
 	static FindLecture fl = new FindLecture();
 
 	// 수강신청 페이지
-	public static void LSingUpUIStart(int std_no) {		
+	public static void LSingUpUIStart(int std_no) {	
+		
+		System.out.println();
+		System.out.println("++++++++++ 수강신청 ++++++++++");
+		SignUp.showAllLectureList();
+		System.out.println("++++++++++++++++++++++++++++");
+		System.out.println("1. 수강신청");
+		System.out.println("2. 강의명별 검색");
+		System.out.println("3. 교수명별 검색");
+		System.out.println("0. 이전 단계");
+		System.out.println("++++++++++++++++++++++++++++");
 
 		while (true) {
-			System.out.println();
-			System.out.println("++++++++++ 수강신청 ++++++++++");
-			SignUp.showAllLectureList();
-			System.out.println("++++++++++++++++++++++++++++");
-			System.out.println("1. 수강신청");
-			System.out.println("2. 강의명별 검색");
-			System.out.println("3. 교수명별 검색");
-			System.out.println("0. 이전 단계");
-			System.out.println("++++++++++++++++++++++++++++");
+			
 			System.out.print("입력창 : ");
 			int chose = Util.scInt();
 			if (chose == 0) {
@@ -41,9 +43,10 @@ public class LSignUpUI {
 				}
 			} else if (chose == 2) {
 				System.out.println("강의별 검색입니다.");
-				// 강의별 검색 나둥에 만들면 넣기++++++++++++++++++++++++++++++++
+				new FindLecture().findbyNameClass();
 			} else if (chose == 3) {
 				System.out.println("교수별 검색입니다.");
+				new FindLecture().findbyProfClass();
 			}
 		}
 	}
