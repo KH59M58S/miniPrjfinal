@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.kh.lecture.LectureOracle;
+
 import com.kh.lecture.RegistrationLecture;
 import com.kh.lecture.SignUp;
 import com.kh.util.Util;
@@ -26,8 +26,8 @@ public class ProfClass {
 				SignUp.showAllSignupList(); break;
 			case 2 : 
 				System.out.println("   2. 학생별 강의 신청 내역 조회  ");
-				String std_name = Util.sc.nextLine();
-				SignUp.showStdSignUp(std_name); break;
+				int std_no = Util.scInt();
+				SignUp.showStdSignUp(std_no); break;
 			case 3 : 
 				System.out.println("   3. 강의별 신청 내역 조회     ");
 				String c_name = Util.sc.nextLine();
@@ -44,7 +44,7 @@ public class ProfClass {
 	public static void ClassAdd() {
 		System.out.println("===== 강의 추가 하기 =====");
 		//객체 생성  후 호출
-       new RegistrationLecture().RegistrationClass(); 
+       new RegistrationLecture().RegistrationClass(1); 
 	}
 
 	
