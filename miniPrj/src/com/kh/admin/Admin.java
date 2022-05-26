@@ -74,6 +74,7 @@ public class Admin {
 				if (dbpwd.equalsIgnoreCase(pwd)) {
 					System.out.println("로그인 성공");
 					Util.infono = dbno;
+					Util.info = "admin";
 					return true;
 				} 
 			}

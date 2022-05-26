@@ -66,12 +66,8 @@ public class FindLecture {
 				String time = rs.getString(2);
 				String room = rs.getString(3);
 				String pname = rs.getString(4);
-				DateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분");
-				String d = null;
 
-				d = df.format(time);
-
-				System.out.println(cname + "\t\t" + d + "\t\t\t" + pname + "\t\t" + room);
+				System.out.println(cname + "\t\t" + time + "\t\t\t" + pname + "\t\t" + room);
 			}
 
 		} catch (SQLException e) {
@@ -107,12 +103,8 @@ public class FindLecture {
 				String time = rs.getString(2);
 				String room = rs.getString(3);
 				String pname = rs.getString(4);
-				DateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분");
-				String d = null;
 
-				d = df.format(time);
-
-				System.out.println(cname + "\t\t" + d + "\t\t\t" + pname + "\t\t" + room);
+				System.out.println(cname + "\t\t" + time + "\t\t\t" + pname + "\t\t" + room);
 			}
 
 		} catch (SQLException e) {
