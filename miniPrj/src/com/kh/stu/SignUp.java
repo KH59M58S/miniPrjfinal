@@ -15,7 +15,8 @@ public class SignUp {
 	 * 2. 비밀번호 확인(한번 더 입력받는 부분)
 	 * 3. 아이디 중복 검사 -> 중복시 출력문 출력
 	 * 4. 비밀 번호 유효성 검사
-	 * 5. 디비에 저장
+	 * 5. 비밀 번호 * 로 표시
+	 * 6. 디비에 저장
 	 */
 
 	public boolean join() {
@@ -37,7 +38,7 @@ public class SignUp {
 		String addr = Util.sc.nextLine();
 		
 		//2. 아이디 중복 검사
-		//디비 접속, 디비에서 현 아이디와 일치하는 아이디 조회, 성공여부 결과 안내
+		//6. 디비 접속, 디비에서 현 아이디와 일치하는 아이디 조회, 성공여부 결과 안내
 		Connection conn = new OracleDB().getConnection();
 		try {
 			String sql = "SELECT STU_ID FROM STUDENT WHERE ID = '" + id + "'";
@@ -83,7 +84,8 @@ public class SignUp {
 			return false;
 		}
 		
-
+		//5.비밀번호 * 표시
+		//코드 오류. 다시 입력
 		return false;
 	}
 
