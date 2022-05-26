@@ -7,7 +7,7 @@ import com.kh.util.Util;
 
 public class ProfScreen {
 
-	public static void main(String[] args) {
+	public static void profScreenStart() {
 		
 	
 			System.out.println("==== 교수 화면 메인 ====");
@@ -33,7 +33,7 @@ public class ProfScreen {
 			} break;
 			
 		case 2: new ProfAnnounce().board(); break;
-		case 3: new ProfClass(); break;
+		case 3: ProfClass.ClassList(); break;
 		case 4: System.out.println("뒤로가기"); break;
 		default : System.out.println("잘못선택하셨습니다.");
 	

@@ -1,5 +1,9 @@
 package com.kh.stu;
 
+import com.kh.admin.Admin;
+import com.kh.admin.SysBoard;
+import com.kh.lecture.LSignUpUI;
+import com.kh.prof.ProfAnnounce;
 import com.kh.util.Util;
 
 public class stuMenu {
@@ -28,7 +32,7 @@ public class stuMenu {
 			new stuMenu().showMyPage();
 			break;
 		case 5:
-			new Login().stu_Login();
+			Login.stu_Login();
 			break;
 		default:
 			throw new IllegalArgumentException("잘못된 값 : " + num);
@@ -38,18 +42,22 @@ public class stuMenu {
 
 	public void showSysNotice() {
 		System.out.println("시스템 공지");
+		new SysBoard().showAllSysBoard();
 	}
 
 	public void showCNotice() {
 		System.out.println("학사 공지");
+		new ProfAnnounce().board();
 	}
 
 	public void showClass() {
 		System.out.println("강의 목록");
+		LSignUpUI.LSingUpUIStart(Util.infono);
 	}
 
 	public void showMyPage() {
 		System.out.println("마이 페이지");
+		// 나중에
 	}
-
+	
 }

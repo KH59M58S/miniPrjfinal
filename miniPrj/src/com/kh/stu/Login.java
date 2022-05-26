@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.kh.admin.Admin;
+import com.kh.admin.AdminScreen;
+import com.kh.prof.ProfScreen;
 import com.kh.util.Util;
 import com.swy.db.OracleDB;
 
@@ -41,7 +44,7 @@ public class Login {
 		ResultSet rs = null;
 
 		// 해당 아이디에 맞는 패스워드 DB에서 조회하기 SELECT = executeQuery();
-		String sql = "SELECT STU_PWD FROM STUDENT WHERE STU_ID = ?";
+		String sql = "SELECT STU_PWD, STU_NO FROM STUDENT WHERE STU_ID = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -53,6 +56,7 @@ public class Login {
 				if (dbPwd.equals(pwd)) {
 					// 로그인 성공
 					System.out.println("로그인 성공!!!");
+					Util.infono = rs.getInt(2);
 					stuMenu.showMenu();
 				} 
 			}else
@@ -81,7 +85,7 @@ public class Login {
 		ResultSet rs = null;
 
 		// 해당 아이디에 맞는 패스워드 DB에서 조회하기 SELECT = executeQuery();
-		String sql = "SELECT P_PWD FROM PROF WHERE P_ID = ?";
+		String sql = "SELECT P_PWD, P_NO FROM PROF WHERE P_ID = ?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -93,7 +97,8 @@ public class Login {
 				if (dbPwd.equals(pwd)) {
 					// 로그인 성공
 					System.out.println("로그인 성공!!!");
-					System.out.println("교수 메뉴 이동");
+					Util.infono = rs.getInt(2);
+					ProfScreen.profScreenStart();
 				} 
 			}else
 				System.out.println("로그인 실패!");
@@ -133,7 +138,7 @@ public class Login {
 				if (dbPwd.equals(pwd)) {
 					// 로그인 성공
 					System.out.println("로그인 성공!!!");
-					System.out.println("관리자 메뉴 이동");
+					new AdminScreen().adminscreen();
 				} 
 			}else
 				System.out.println("로그인 실패!");
