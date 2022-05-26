@@ -36,7 +36,6 @@ public class Util {
 			result = rs.getString(1);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -60,7 +59,6 @@ public class Util {
 			result = rs.getInt(1);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -84,7 +82,6 @@ public class Util {
 			result = rs.getString(1);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -108,10 +105,33 @@ public class Util {
 			result = rs.getInt(1);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return result;
 	}
+	
+	//강의명을 강의번호로 변환
+	public static int classNameToNo(String c_name) {
+		int result = 0;
+		
+		Connection conn = OracleDB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT C_NO FROM CLASS WHERE C_NAME = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c_name);
+			rs = pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 }
