@@ -14,11 +14,11 @@ public class ProfAtt {
 	static PreparedStatement pstmt = null;
 	static ResultSet rs = null;
 	
-	public static void classAttendence(String c_name) { //해당 강의의 학생들 전체 출석부
+	public void classAttendence() { //해당 강의의 학생들 전체 출석부
 		
 	// 1. 강의 입력
-	System.out.println("과목을 입력하세요.");
-	Util.sc.nextLine();
+		System.out.println("과목을 입력하세요.");
+		String c_name = Util.sc.nextLine();
 	
 	
 	// 2. DB에서 데이터 가져오기 (영어를 입력하면 영어를 듣는 학생들의 출석부 가져오기)
@@ -28,7 +28,7 @@ public class ProfAtt {
 	//3. 해당 강의에 맞는 출석부 조회하기
 	
 	try {
-		String sql = "SELECT * FROM C_1_ATT";
+		String sql = "SELECT * FROM C_1_ATT"; //-----------------------------------------> 질문하기
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, c_name);
 		rs = pstmt.executeQuery();
@@ -56,20 +56,26 @@ public class ProfAtt {
 	
 }
 	
+	//2시간 20분
 	
-	
-	public static void stuAttendence(String std_name) { //해당 학생 출석부
-		// 1. 학생 이름 입력
-		System.out.println("학생 이름을 입력하세요.");
-		Util.sc.nextLine();
+	public static void stuAttendence() { //해당 학생 출석부
+		// 1. 학생 번호 입력
+		System.out.println("학생 번호를 입력하세요.");
+		int std_no = Util.scInt();
 		
-		String sql = "SELECT * FROM C_1_ATT WHERE STU_NAME = ?";
 		
+		
+		
+		String sql = "SELECT * FROM C_1_ATT WHERE STU_NO = ?";
+		 
 		try {
-			pstmt.setString(1, std_name);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, std_no);
 			ResultSet rs = pstmt.executeQuery();
+			System.out.println(std_no +" 학생의 출석입니다.");
 			
-			if(rs.next()) {
+			
+			while(rs.next()) {
 				
 			}
 			
