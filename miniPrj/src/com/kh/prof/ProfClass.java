@@ -22,14 +22,14 @@ public class ProfClass {
 		
 		switch(input){
 			case 1 : 
-				System.out.println("   1. 전체 신청 리스트 조회     ");
+				System.out.println("    1. 전체 신청 리스트 조회     ");
 				SignUp.showAllSignupList(); break;
 			case 2 : 
-				System.out.println("   2. 학생별 강의 신청 내역 조회  ");
+				System.out.println("    2. 학생별 강의 신청 내역 조회  ");
 				int std_no = Util.scInt();
 				SignUp.showStdSignUp(std_no); break;
 			case 3 : 
-				System.out.println("   3. 강의별 신청 내역 조회     ");
+				System.out.println("    3. 강의별 신청 내역 조회     ");
 				String c_name = Util.sc.nextLine();
 				SignUp.showLectureSingUp(c_name); break;
 			default : System.out.println("잘못 선택하셨습니다."); break;
