@@ -9,6 +9,7 @@ import com.kh.admin.Admin;
 import com.kh.admin.AdminScreen;
 import com.kh.main.Main;
 import com.kh.prof.ProfScreen;
+import com.kh.screen.Screen;
 import com.kh.util.Util;
 import com.swy.db.OracleDB;
 
@@ -26,7 +27,7 @@ public class Login {
 		} else if (num == 3) {
 			admin_Login();
 		}else {
-			System.out.println("메인메뉴로 이동 하는 메소드 -출력 Main에 있는 명령어들 메소드로 묶기");
+			Screen.mainMenu_show();
 		}
 
 	}
