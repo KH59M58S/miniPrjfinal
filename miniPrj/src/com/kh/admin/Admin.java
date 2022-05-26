@@ -5,12 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.kh.lecture.LectureOracle;
 import com.kh.util.Util;
 import com.swy.db.OracleDB;
 
 public class Admin {
-
+	
 	public boolean signUp() {
 
 		System.out.print("아이디 : ");
@@ -20,10 +19,10 @@ public class Admin {
 		System.out.print("이름 : ");
 		String name = Util.sc.nextLine();
 
-		Connection conn = LectureOracle.getConnection();
+		Connection conn = OracleDB.getConnection();
 
 		String sql = "INSERT INTO ADMIN (AD_NO, AD_ID, AD_PWD, AD_NAME)" 
-						+ " VALUES(?,?,?,?)";
+						+ " VALUES(ADMIN_NO.NEXTVAL,?,?,?)";
 
 		PreparedStatement pstmt = null;
 		try {
@@ -49,16 +48,16 @@ public class Admin {
 		return false;
 	}
 
-	public boolean login() {
+	public int login() {
 
 		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
 		System.out.print("비밀번호 : ");
 		String pwd = Util.sc.nextLine();
 
-		Connection conn = LectureOracle.getConnection();
+		Connection conn = OracleDB.getConnection();
 
-		String sql = "SELECT AD_PWD FROM ADMIN"
+		String sql = "SELECT AD_NO, AD_PWD FROM ADMIN"
 				+ " WHERE AD_ID = ?";
 		
 		PreparedStatement pstmt = null;
@@ -70,10 +69,11 @@ public class Admin {
 			
 			
 			if (rs.next()) {
-				String dbpwd = rs.getString(1);
+				int dbno = rs.getInt(1);
+				String dbpwd = rs.getString(2);
 				if (dbpwd.equalsIgnoreCase(pwd)) {
 					System.out.println("로그인 성공");
-					return true;
+					return dbno;
 				} 
 			}
 
@@ -86,6 +86,8 @@ public class Admin {
 		}
 
 		System.out.println("로그인 실패");
-		return false;
+		return 0;
 	}
+	
+	
 }
