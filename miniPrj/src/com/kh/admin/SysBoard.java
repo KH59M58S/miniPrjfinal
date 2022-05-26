@@ -105,7 +105,35 @@ public class SysBoard {
 	
 	}
 	
-	public void editSysBoard() {
+	public void editSysBoard(int no) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT SYS_TITLE,SYS_CONTENT "
+				+ " FROM SYSBOARD "
+				+ " WHERE SYS_NO = ? ";
+				
+		try {
+			pstmt = OracleDB.getConnection().prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String title = rs.getString(1);
+				String content = rs.getString(2);
+				
+				System.out.println("제목 : " + title);
+				System.out.println("내용 : " + content);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleDB.close(pstmt);
+			OracleDB.close(rs);
+		}
+		
+		
 		
 	}
 }

@@ -7,6 +7,9 @@ public class Main {
 //		new Admin().signUp();
 		new AdminScreen().adminscreen();
 		
+		
+
+		
 	}
 
 }
