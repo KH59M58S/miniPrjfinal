@@ -45,6 +45,7 @@ public class SignUp {
 			ResultSet rs = stmtChe.executeQuery(sql);
 			
 			if (rs.next()) {
+				System.out.println("아이디가 중복입니다. 다시 만들어주세요.");
 				return false;
 			}
 			
@@ -64,9 +65,9 @@ public class SignUp {
 		}
 		
 		//3. 비밀번호 유효성 검사
-		//비밀번호 6글자 이상, 특수문자 1개 이상 포함
-		if(pwd.length() < 7 ) {
-			System.out.println("6자이상으로 만들어주세요!");
+		//비밀번호 4글자 이상, 특수문자 1개 이상 포함
+		if(pwd.length() < 5 ) {
+			System.out.println("4글자 이상으로 만들어주세요!");
 			return false;
 		}
 		else if(pwd.contains("!") || pwd.contains("^")|| pwd.contains("*") || pwd.contains(".") || pwd.contains("#")) {
@@ -74,6 +75,14 @@ public class SignUp {
 			System.out.print("특수문자 !, ^, *, . , # 중에 1개 이상 포함해주세요!");
 			return false;
 		}
+		
+		//4.비밀번호 확인
+		//pwd와 pwd1이 틀리면 다시 입력
+		if (pwd != pwd1) {
+			System.out.println("비밀번호가 동일하지  않습니다. 다시 입력해주세요!");
+			return false;
+		}
+		
 
 		return false;
 	}
