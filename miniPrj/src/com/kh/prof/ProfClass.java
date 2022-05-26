@@ -21,13 +21,14 @@ public class ProfClass {
 				System.out.println("    3. 강의별 신청 내역 조회     ");
 				int input = Util.scInt();
 				
+				
 		switch(input){
 			case 1 : 
 				SignUp.showAllSignupList(); break;
 			case 2 : 
-				int std_no = Util.scInt();
-				SignUp.showStdSignUp(std_no); break;
+				SignUp.showStdSignUp(input); break;
 			case 3 : 
+				System.out.print("강의 이름 입력 : ");
 				String c_name = Util.sc.nextLine();
 				SignUp.showLectureSingUp(c_name); break;
 			default : System.out.println("잘못 선택하셨습니다."); break;
@@ -46,7 +47,9 @@ public class ProfClass {
 	}
 
 	
-	
+	public static void main(String[] args) {
+		ClassList();
+	}
 	
 	
 	
