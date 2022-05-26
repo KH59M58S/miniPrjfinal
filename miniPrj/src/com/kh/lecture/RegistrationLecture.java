@@ -45,6 +45,24 @@ public class RegistrationLecture {
 			OracleDB.close(pstmt);
 		}
 		
+		String sql2 = "CREATE TABLE C_?_ATT("
+				+ " A_NO NUMBER PRIMARY KEY,"
+				+ " A_TIME TIMESTAMP DEFAULT SYSDATE,"
+				+ " A_CHECK CHAR(1), "
+				+ " STU_NO NUMBER,"
+				+ " CONSTRAINT A_NOFK? FOREIGN KEY (STU_NO) REFERENCES  STUDENT(STU_NO));";
+		PreparedStatement pstmt2 = null;
+		
+		try {
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setInt(1, c_room);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 		System.out.println("실패");
 		
 		

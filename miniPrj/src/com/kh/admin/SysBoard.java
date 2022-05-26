@@ -42,6 +42,23 @@ public class SysBoard {
 			OracleDB.close(rs);
 		}
 		
+		if ( Util.info.equals("admin")) {
+			System.out.println("뒤로가기 : -1 | 글 수정 : -2");
+			int input = Util.scInt();
+			if ( input == -1 ) {
+				showAllSysBoard();
+			} else if ( input == -2 ) {
+				editSysBoard(no);
+			}
+		} else if (Util.info.equals("Student")) {
+			System.out.println("뒤로가기 : -1");
+			int input = Util.scInt();
+			if ( input == -1 ) {
+				showAllSysBoard();
+			}
+		}
+		
+		
 		
 		
 	}
