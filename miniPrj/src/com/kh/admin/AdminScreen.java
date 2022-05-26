@@ -27,6 +27,7 @@ public class AdminScreen {
 	
 	public void showSysBoardMenu() {
 		System.out.println("글 번호 선택");
+		System.out.println("글 쓰기 : -2");
 		System.out.println("뒤로가기 : -1");
 		int input = 0;
 		try {
@@ -38,7 +39,9 @@ public class AdminScreen {
 		
 		if (input == -1) {
 			new AdminScreen().adminscreen();
-		} else {
+		} else if (input == -2){
+			new SysBoard().writeSysBoard();
+		}else {
 			new SysBoard().showSysBoard(input);
 		}
 		

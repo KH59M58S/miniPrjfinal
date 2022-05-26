@@ -10,7 +10,7 @@ import com.swy.db.OracleDB;
 
 public class SysBoard {
 	
-	public void showSysBoard(int input) {
+	public void showSysBoard(int no) {
 		String sql = "SELECT SYS_NO,SYS_TITLE,SYS_DATE, SYS_CONTENT"
 				+ " FROM SYSBOARD"
 				+ " WHERE SYS_NO = ?";
@@ -21,7 +21,7 @@ public class SysBoard {
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, input);
+			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			
 			if ( rs.next()) {
@@ -46,7 +46,7 @@ public class SysBoard {
 		
 	}
 	
-	public void writeSysBoard(int a_no) {
+	public void writeSysBoard() {
 		
 		String sql = "INSERT INTO SYSBOARD(SYS_TITLE,SYS_CONTENT,AD_NO) "
 				+ "VALUES(SYSBOARD_NO.NEXTVAL,?,?,?)";
@@ -62,7 +62,7 @@ public class SysBoard {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
-			pstmt.setInt(3, a_no);
+			pstmt.setInt(3, Util.infono);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -70,6 +70,7 @@ public class SysBoard {
 			OracleDB.close(pstmt);
 		}
 		
+		showAllSysBoard();
 	}
 	
 	public void showAllSysBoard() {
@@ -84,7 +85,7 @@ public class SysBoard {
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
-			System.out.println("번호\t\t제목");
+			System.out.println("번호\t\t\t제목");
 			while (rs.next()) {
 				int no = rs.getInt(1);
 				String title = rs.getString(2);
