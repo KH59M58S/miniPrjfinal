@@ -9,11 +9,11 @@ import com.kh.util.Util;
 public class stuMenu {
 
 	public static void showMenu() {
-		System.out.println("==== 로그인 화면 메인 ====");
-		System.out.println("1. 시스템 공지");
-		System.out.println("2. 학사 공지");
-		System.out.println("3. 수강 관련");
-		System.out.println("4. 마이페이지");
+		System.out.println("++++++++++ 로그인 화면 메인 ++++++++++");
+		System.out.println("1. 시스템 공지");	//학생기준 화면 보는거라 1. 시스템공지 2.상세보기 3.돌아가기
+		System.out.println("2. 학사 공지");	//학생기준 화면 보는거라 1. 학사 공지 2.상세보기 3.돌아가기
+		System.out.println("3. 수강 관련");	//학생기준 화면 보는거라 1. 강의목록 2. 수강신청 3.돌아가기
+		System.out.println("4. 마이페이지");	//학생기준 화면 보는거라 1. 수강내역 2.자기정보보기 3.돌아가기
 		System.out.println("5. 로그아웃");
 
 		int num = Util.scInt();
