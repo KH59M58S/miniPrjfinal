@@ -24,6 +24,7 @@ public class AdminScreen {
 			break;
 		case 3:
 			Util.infono = 0;
+			Util.info = "";
 			break;
 		}
 
