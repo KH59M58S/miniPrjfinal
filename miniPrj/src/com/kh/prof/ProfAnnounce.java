@@ -15,8 +15,9 @@ public class ProfAnnounce {
 	public static int input;
 	public static int pno;
 	//교수 공지사항 선택 시 뜨는 화면
+	boolean a;
 	public void board() {
-		while(true) {
+		while(input !=5) {
 			
 			System.out.println("==== 학과 공지 ====");
 			System.out.println("1. 공지사항 목록");
@@ -32,7 +33,8 @@ public class ProfAnnounce {
 			case 2 : boardwrite();break;
 			case 3 : boarddelete();break;
 			case 4 : boardupdate();break;
-			case 5 : return;
+			case 5 : new ProfScreen().profScreenStart();
+					a = false;break;
 			default : System.out.println("잘못선택하셨습니다...");
 			}
 		}
@@ -110,6 +112,13 @@ public class ProfAnnounce {
 	//2. 공지사항 작성*********실행OK
     
     public void boardwrite() {
+    
+    //접근제한
+    	if(Util.info.equals("Student")) {
+    		System.out.println("!!! 교수 유저만 접근가능합니다 !!!");
+    		return;
+    	}
+    	
     //글작성 얻기
     System.out.println("====공지사항 작성 ====");
     System.out.println("글제목 : ");
@@ -148,7 +157,14 @@ public class ProfAnnounce {
 	
 	
 	//3. 공지사항 삭제*********실행OK
+   
     public void boarddelete() {
+    
+    //접근제한
+    	if(Util.info.equals("Student")) {
+    		System.out.println("!!! 교수 유저만 접근가능합니다 !!!");
+    		return;
+    	}
     //DB얻어놓음    
         System.out.println("====공지사항 삭제====");
     //글목록 보여주기
@@ -178,6 +194,12 @@ public class ProfAnnounce {
     
 	//4. 공지사항 수정
     public void boardupdate() {
+    
+	//접근제한
+    	if(Util.info.equals("Student")) {
+    		System.out.println("!!! 교수 유저만 접근가능합니다 !!!");
+    		return;
+    	}
     //DB얻어놓음
         System.out.println("====공지사항 수정 ====");
     //글목록 보여주기
