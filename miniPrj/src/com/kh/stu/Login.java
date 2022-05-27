@@ -46,7 +46,7 @@ public class Login {
 		ResultSet rs = null;
 
 		// 해당 아이디에 맞는 패스워드 DB에서 조회하기 SELECT = executeQuery();
-		String sql = "SELECT STU_PWD, STU_NO FROM STUDENT WHERE STU_ID = ?";
+		String sql = "SELECT STU_PWD, STU_NO FROM STUDENT WHERE STU_ID = ? AND STU_QUIT_YN = 'N'";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -64,6 +64,7 @@ public class Login {
 				}
 			} else {
 				System.out.println("로그인 실패!");
+				System.out.println("탈퇴된 계정이거나 비밀번호 오류입니다.");
 				try_login();
 			}
 		} catch (SQLException e) {
@@ -90,7 +91,7 @@ public class Login {
 		ResultSet rs = null;
 
 		// 해당 아이디에 맞는 패스워드 DB에서 조회하기 SELECT = executeQuery();
-		String sql = "SELECT P_PWD, P_NO FROM PROF WHERE P_ID = ?";
+		String sql = "SELECT P_PWD, P_NO FROM PROF WHERE P_ID = ? AND P_QUIT_YN = 'N'";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -103,11 +104,12 @@ public class Login {
 					// 로그인 성공
 					System.out.println("로그인 성공!!!");
 					Util.infono = rs.getInt(2);
-					Util.info = "prof";
+					Util.info = "Prof";
 					ProfScreen.profScreenStart();
 				}
 			} else {
 				System.out.println("로그인 실패!");
+				System.out.println("탈퇴된 계정이거나 비밀번호 오류입니다.");
 				try_login();
 			}
 		} catch (SQLException e) {
@@ -147,7 +149,7 @@ public class Login {
 					// 로그인 성공
 					System.out.println("로그인 성공!!!");
 					Util.infono = rs.getInt(2);
-					Util.info = "admin";
+					Util.info = "Admin";
 					new AdminScreen().adminscreen();
 				}
 			} else {
