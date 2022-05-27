@@ -177,6 +177,31 @@ public class Util {
 		return result;
 	}
 	
+	// 부서 개수
+	public static int countDept() {
+		Connection conn = OracleDB.getConnection();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		String sqlSelect = "SELECT COUNT(DEPT_NO) FROM DEPT";
+		
+		try {
+			pstmt = conn.prepareStatement(sqlSelect);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return cnt;
+		
+	}
+	
 }
 		   
 

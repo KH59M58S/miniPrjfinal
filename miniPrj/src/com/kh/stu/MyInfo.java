@@ -6,10 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.kh.db.OracleDB;
 import com.kh.prof.ProfScreen;
 import com.kh.screen.Screen;
 import com.kh.util.Util;
+import com.kh.db.OracleDB;
 
 public class MyInfo {
 
