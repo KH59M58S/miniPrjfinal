@@ -8,7 +8,7 @@ public class AdminScreen {
 
 	public void adminscreen() {
 		int input = 0;
-		System.out.println("1. 출석");
+		System.out.println("1. 강의 관련");
 		System.out.println("2. 시스템 공지사항");
 		System.out.println("3. 계정관리");
 		System.out.println("4. 로그아웃");
@@ -20,12 +20,13 @@ public class AdminScreen {
 		}
 		switch (input) {
 		case 1:
+			AdminAttScreen();
 			break;
 		case 2:
 			new SysBoard().showAllSysBoard();
 			break;
 		case 3:
-			new MyInfo().selectnum();
+			MyInfo.selectnum();
 		case 4:
 			Util.infono = 0;
 			Util.info = "";
@@ -66,6 +67,22 @@ public class AdminScreen {
 			}
 		}
 
+	}
+	
+	public void AdminAttScreen() {
+		System.out.println("===== 출석 선택 =====");
+		System.out.println("1. 강의별 출석 보기");
+		System.out.println("2. 강의별 학생 보기");
+		System.out.println("3. 강의의 해당 일의 출석 학생");
+		int input = Util.scInt();
+		switch (input) {
+		case 1: new AdminAtt().AdminClassAtt();
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
 	}
 
 }
