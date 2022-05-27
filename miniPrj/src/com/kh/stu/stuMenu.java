@@ -42,21 +42,26 @@ public class stuMenu {
 
 	public void showSysNotice() {
 		System.out.println("시스템 공지");
+		System.out.println("=====================");
 		new SysBoard().showAllSysBoard();
 	}
 
 	public void showCNotice() {
 		System.out.println("학사 공지");
+		System.out.println("=====================");
 		new ProfAnnounce().board();
 	}
 
 	public void showClass() {
 		System.out.println("강의 목록");
+		System.out.println("=====================");
 		LSignUpUI.LSingUpUIStart(Util.infono);
 	}
 
 	public void showMyPage() {
 		System.out.println("마이 페이지");
+		System.out.println("=====================");
+		new MyInfo().ShowInfo();
 		// 나중에
 	}
 	
