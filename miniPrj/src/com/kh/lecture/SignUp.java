@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.kh.util.Util;
 import com.swy.db.OracleDB;
 
 public class SignUp {
@@ -14,13 +15,9 @@ public class SignUp {
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT STU.STU_NAME, C.C_NAME , S.S_TIME, S.S_QUIT_YN" 
-				+ " FROM SIGNUP S"
-				+ " INNER JOIN STUDENT STU" 
-				+ " ON S.STU_NO = STU.STU_NO" 
-				+ " INNER JOIN CLASS C"
-				+ " ON S.C_NO = c.c_no" 
-				+ " WHERE S.S_QUIT_YN = 'N'";
+		String sql = "SELECT STU.STU_NAME, C.C_NAME , S.S_TIME, S.S_QUIT_YN" + " FROM SIGNUP S"
+				+ " INNER JOIN STUDENT STU" + " ON S.STU_NO = STU.STU_NO" + " INNER JOIN CLASS C"
+				+ " ON S.C_NO = c.c_no" + " WHERE S.S_QUIT_YN = 'N'";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
@@ -47,8 +44,7 @@ public class SignUp {
 	public static boolean insertSignUp(int c_no, int stu_no) {
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO SIGNUP (S_NO, C_NO, STU_NO)" 
-				+ "VALUES(SIGNUP_NO.NEXTVAL,?,?)";
+		String sql = "INSERT INTO SIGNUP (S_NO, C_NO, STU_NO)" + "VALUES(SIGNUP_NO.NEXTVAL,?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, c_no);
@@ -75,20 +71,16 @@ public class SignUp {
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT STU.STU_NAME, C.C_NAME , S.S_TIME, S.S_QUIT_YN"
-				+ " FROM SIGNUP S"
-				+ " INNER JOIN STUDENT STU"
-				+ " ON S.STU_NO = STU.STU_NO" 
-				+ " INNER JOIN CLASS C"
-				+ " ON S.C_NO = c.c_no" 
-				+ " WHERE S.S_QUIT_YN = 'N' AND STU.STU_NO = '" + std_no + "'";
+		String sql = "SELECT STU.STU_NAME,C.C_NO, C.C_NAME , S.S_TIME, S.S_QUIT_YN" + " FROM SIGNUP S"
+				+ " INNER JOIN STUDENT STU" + " ON S.STU_NO = STU.STU_NO" + " INNER JOIN CLASS C"
+				+ " ON S.C_NO = c.c_no" + " WHERE S.S_QUIT_YN = 'N' AND STU.STU_NO = '" + std_no + "'";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
 
 			while (rs.next()) {
-				System.out.println(
-						"이름:" + rs.getString(1) + "  " + "강의명:" + rs.getString(2) + "  " + "신청일자:" + rs.getDate(3));
+				System.out.println("이름:" + rs.getString(1) + "  강의번호:" + rs.getInt(2) + "  강의명:" + rs.getString(3)
+						+ "  신청일자:" + rs.getDate(4));
 			}
 
 		} catch (SQLException e) {
@@ -102,28 +94,24 @@ public class SignUp {
 				OracleDB.close(rs);
 		}
 	}
-	
-	//강의별 신청내역 검색
+
+	// 강의별 신청내역 검색
 	public static void showLectureSingUp(String c_name) {
-		
+
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "SELECT C.C_NAME, STU.STU_NAME, S.S_TIME, S.S_QUIT_YN"
-				+ " FROM SIGNUP S"
-				+ " INNER JOIN STUDENT STU"
-				+ " ON S.STU_NO = STU.STU_NO" 
-				+ " INNER JOIN CLASS C"
-				+ " ON S.C_NO = c.c_no" 
-				+ " WHERE S.S_QUIT_YN = 'N' AND C.C_NAME = '" + c_name + "'";
+
+		String sql = "SELECT C.C_NAME, STU.STU_NAME, S.S_TIME, S.S_QUIT_YN" + " FROM SIGNUP S"
+				+ " INNER JOIN STUDENT STU" + " ON S.STU_NO = STU.STU_NO" + " INNER JOIN CLASS C"
+				+ " ON S.C_NO = c.c_no" + " WHERE S.S_QUIT_YN = 'N' AND C.C_NAME = '" + c_name + "'";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
 
 			while (rs.next()) {
 				System.out.println(
-						"강의명:" + rs.getString(1) + "  " + "이름:" + rs.getString(2) + "  " +  "신청일자:" + rs.getDate(3));
+						"강의명:" + rs.getString(1) + "  " + "이름:" + rs.getString(2) + "  " + "신청일자:" + rs.getDate(3));
 			}
 
 		} catch (SQLException e) {
@@ -137,23 +125,22 @@ public class SignUp {
 				OracleDB.close(rs);
 		}
 	}
-	
+
+	// 모든 강의 보기
 	public static void showAllLectureList() {
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		String sql = "SELECT C.C_NO, C_NAME, C.C_TIME, C.C_ROOM, P.P_NAME "
-				+ "FROM CLASS C "
-				+ "INNER JOIN PROF P "
+
+		String sql = "SELECT C.C_NO, C_NAME, C.C_TIME, C.C_ROOM, P.P_NAME " + "FROM CLASS C " + "INNER JOIN PROF P "
 				+ "ON (C.P_NO = P.P_NO) ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
 
 			while (rs.next()) {
-				System.out.println("강의번호:" + rs.getString(1) + "  강의명:" + rs.getString(2) 
-								+ "  시간:"+ rs.getString(3) + "  강의실:"+ rs.getString(4) + "  교수명:" + rs.getString(5));
+				System.out.println("강의번호:" + rs.getString(1) + "  강의명:" + rs.getString(2) + "  시간:" + rs.getString(3)
+						+ "  강의실:" + rs.getString(4) + "  교수명:" + rs.getString(5));
 			}
 
 		} catch (SQLException e) {
@@ -168,4 +155,37 @@ public class SignUp {
 		}
 	}
 
+	// 수강신청 취소
+	public static int deleteSignUp(int c_no) {
+		Connection conn = OracleDB.getConnection();
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String sql = "UPDATE SIGNUP SET S_QUIT_YN = 'Y' WHERE STU_NO = ? AND C_NO = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, c_no);
+			result = pstmt.executeUpdate(); // 안됨
+
+			return result;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn == null)
+				OracleDB.close(conn);
+			if (pstmt == null)
+				OracleDB.close(pstmt);
+		}
+
+		return 0;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("start");
+		System.out.println(deleteSignUp(1));
+		System.out.println("end");
+	}
 }
