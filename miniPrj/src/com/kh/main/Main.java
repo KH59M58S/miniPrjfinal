@@ -10,6 +10,12 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		System.out.print("\n\n\n");
+		System.out.print("		#   #  #  #      #   #  #   #  ###  #    #");
+		System.out.print("		# #    #  #      #   #  ##  #   #   #    #");
+		System.out.print("		##     ####      #   #  # # #   #   #    #");
+		System.out.print("		# #    #  #      #   #  #  ##   #    #  #");
+		System.out.print("		#  #   #  #      #####  #   #  ###    #");
 		System.out.println("==== 메인 화면 ====");
 		System.out.println("1. 회원가입");
 		System.out.println("2. 로그인");

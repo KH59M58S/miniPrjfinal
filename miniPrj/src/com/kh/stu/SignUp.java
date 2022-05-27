@@ -1,6 +1,7 @@
 package com.kh.stu;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,7 +16,7 @@ public class SignUp {
 	 * 2. 비밀번호 확인(한번 더 입력받는 부분)
 	 * 3. 아이디 중복 검사 -> 중복시 출력문 출력
 	 * 4. 비밀 번호 유효성 검사
-	 * 5. 비밀 번호 * 로 표시
+	 * 5. 비밀 번호 * 로 표시(유틸에서 작업)
 	 * 6. 디비에 저장
 	 */
 
@@ -41,10 +42,11 @@ public class SignUp {
 		//6. 디비 접속, 디비에서 현 아이디와 일치하는 아이디 조회, 성공여부 결과 안내
 		Connection conn = new OracleDB().getConnection();
 		try {
-			String sql = "SELECT STU_ID FROM STUDENT WHERE ID = '" + id + "'";
-			Statement stmtChe = conn.createStatement();
-			ResultSet rs = stmtChe.executeQuery(sql);
-			
+			String sql = "SELECT STU_ID FROM STUDENT WHERE ID = ? ";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,  id);
+			ResultSet rs = pstmt.executeQuery();
+					
 			if (rs.next()) {
 				System.out.println("아이디가 중복입니다. 다시 만들어주세요.");
 				return false;
@@ -52,9 +54,17 @@ public class SignUp {
 			
 			String sqlInsert 
 			= "INSERT INTO STU_ID(NO,ID,PWD,NAME,MAJOR,PHONE,ADDR)"
-					+ "VALUES('" + id + "','" + pwd + "','" + name + "','" + major + "','" + phone + addr + "')";
-			Statement stmtInsert = conn.createStatement();
-			int result = stmtInsert.executeUpdate(sqlInsert);
+					+ "VALUES(?,?,?,?,?,?,?)";
+			PreparedStatement pstmt2 = conn.prepareStatement(sqlInsert);
+			pstmt2.setInt(1, 1);
+			pstmt2.setString(2, id);
+			pstmt2.setString(3, pwd);
+			pstmt2.setString(4, name);
+			pstmt2.setString(5, major);
+			pstmt2.setString(6, phone);
+			pstmt2.setString(7, addr);
+			int result = pstmt2.executeUpdate();
+			
 			
 			if (result == 1) {
 				return true;
@@ -84,7 +94,6 @@ public class SignUp {
 			return false;
 		}
 		
-		//5.비밀번호 * 표시
 		//코드 오류. 다시 입력
 		return false;
 	}
