@@ -13,10 +13,11 @@ import com.kh.util.Util;
 public class SysBoard {
 	
 	public void showSysBoard(int no) {
-		String sql = "SELECT SYS_NO,SYS_TITLE,SYS_DATE, SYS_CONTENT"
+		String sql = "SELECT SYS_NO,SYS_DATE, SUBSTR(RPAD(SYS_CONTENT,40,' '),1,40)"
 				+ " FROM SYSBOARD"
 				+ " WHERE SYS_NO = ?";
-		
+//		SUBSTR(RPAD(SYS_TITLE,20,' '),1,40)
+//		"|" + "  제목  " +
 		Connection conn = OracleDB.getConnection();
 		
 		PreparedStatement pstmt = 	null;
@@ -27,10 +28,23 @@ public class SysBoard {
 			rs = pstmt.executeQuery();
 			
 			if ( rs.next()) {
-				System.out.println(" 번호 : " + rs.getInt(1));
-				System.out.println(" 제목 : " + rs.getString(2));
-				System.out.println(" 작성 시간 : " + rs.getDate(3));
-				System.out.println(" 내용 : " + rs.getString(4));
+				System.out.println("\n  번호 " + "|" +"   작성일   " + "|"+ "      내 용         " );
+				System.out.println("-----------------------------------");
+				System.out.print("   "+rs.getInt(1)+"  ");
+				System.out.print("|");
+				System.out.print(rs.getDate(2));
+//				System.out.print("|");
+//				System.out.print(rs.getString(2));
+				System.out.print("|");
+				System.out.print(rs.getString(3));
+				System.out.println("\n===================================\n");
+				
+				
+				
+//				System.out.println(" 번호 : " + rs.getInt(1));
+//				System.out.println(" 제목 : " + rs.getString(2));
+//				System.out.println(" 작성 시간 : " + rs.getDate(3));
+//				System.out.println(" 내용 : " + rs.getString(4));
 			} else {
 				System.out.println("없는 번호 입니다.");
 				showAllSysBoard();
@@ -67,7 +81,7 @@ public class SysBoard {
 	
 	public void writeSysBoard() {
 		
-		String sql = "INSERT INTO SYSBOARD(SYS_TITLE,SYS_CONTENT,AD_NO) "
+		String sql = "INSERT INTO SYSBOARD(SYS_NO, SYS_TITLE,SYS_CONTENT,AD_NO) "
 				+ "VALUES(SYSBOARD_NO.NEXTVAL,?,?,?)";
 		System.out.print("제목 : ");
 		String title = Util.sc.nextLine();
@@ -82,6 +96,13 @@ public class SysBoard {
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
 			pstmt.setInt(3, Util.infono);
+			
+			int wsb = pstmt.executeUpdate();
+			
+			 if(wsb == 1) {
+	              System.out.println("공지작성 완료 !!!");
+	            }else System.out.println("공지작성 실패 ...")
+			 ;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -94,7 +115,7 @@ public class SysBoard {
 	
 	public void showAllSysBoard() {
 
-		String sql = "SELECT SYS_NO,SYS_TITLE,SYS_DATE FROM SYSBOARD";
+		String sql = "SELECT SYS_NO,SUBSTR(RPAD(SYS_TITLE,40,' '),1,40),SYS_DATE FROM SYSBOARD";
 		
 		Connection conn = OracleDB.getConnection();
 		
