@@ -164,12 +164,9 @@ public class SysBoard {
 		System.out.print("내용 : ");
 		content = Util.sc.nextLine();
 		
-		System.out.println("1번입니다");
-		
-		String sql2 = "UPDATE SYSBOARD SET SYS_TITLE = ?,SYS_CONTENT = ?"
-				+ ",AD_NO=? WHERE SYS_NO = ?";
-			
-		System.out.println("2번입니다");
+		String sql2 = "UPDATE SYSBOARD "
+				+ " SET SYS_TITLE = ?, SYS_CONTENT = ? , AD_NO=? "
+				+ " WHERE SYS_NO = ? ";
 		
 		Connection conn = OracleDB.getConnection();
 		try {
@@ -178,13 +175,13 @@ public class SysBoard {
 			pstmt.setString(2, content);
 			pstmt.setInt(3, Util.infono);
 			pstmt.setInt(4, no);
+			pstmt.executeQuery();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleDB.close(conn);
 			OracleDB.close(pstmt);
 		}
-		System.out.println("3번입니다");
 		showAllSysBoard();
 		
 		
