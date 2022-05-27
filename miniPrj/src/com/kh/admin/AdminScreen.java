@@ -79,9 +79,9 @@ public class AdminScreen {
 		switch (input) {
 		case 1: new AdminAtt().AdminClassAtt();
 			break;
-		case 2:
+		case 2: new AdminAtt().stuInClass();
 			break;
-		case 3:
+		case 3: new AdminAtt().dayatAtt();
 			break;
 		}
 	}
