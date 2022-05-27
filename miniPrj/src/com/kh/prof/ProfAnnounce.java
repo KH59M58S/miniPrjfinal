@@ -74,7 +74,7 @@ public class ProfAnnounce {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT LPAD(ROWNUM,5,' ') 순서, SUBSTR(RPAD(PRO_TITLE,25,' '),1) 글제목, RPAD(PRO_DATE,8,',') 작성일 "
+		String sql = "SELECT LPAD(ROWNUM,5,' ') 순서, SUBSTR(RPAD(PRO_TITLE,40,' '),1,40) 글제목, SUBSTR(RPAD(PRO_DATE,8,' '),1) 작성일 "
 				+ "FROM (SELECT ROWNUM RN, P.* FROM PROFBOARD P ORDER BY PRO_DATE) WHERE ROWNUM <= ?  ";		
 	try {
 		pstmt = conn.prepareStatement(sql);
@@ -82,18 +82,18 @@ public class ProfAnnounce {
 		
 		rs = pstmt.executeQuery();
 		
-		System.out.println("\n 순서 " + "|" + "       글제목       " + "|" + "   작성일 ");
+		System.out.println("\n 순서 " + "|" +"  작성일  "  + "|" + "       제  목       ");
 		System.out.println("===================================");
 		while(rs.next()) {
 			int proNo = rs.getInt("순서");//글번호
-			String proTitle = rs.getString("글제목");
 			String proDate = rs.getString("작성일");
+			String proTitle = rs.getString("글제목");
 			
 			System.out.print("  " + proNo + "  ");
 			System.out.print("|");
-			System.out.print(proTitle);
-			System.out.print("|");
 			System.out.print(proDate);
+			System.out.print("|");
+			System.out.print(proTitle);
 			System.out.println("\n-----------------------------------");
 		}
 		System.out.println("===================================");
@@ -106,7 +106,7 @@ public class ProfAnnounce {
 	System.out.println(">>원하는 글의 번호 선택하세요");
 	pno = Util.scInt();
 	ResultSet rs2 = null;
-	String sql2 = "SELECT PRO_NO 글번호, RPAD(PRO_CONTENT,25,' ') 글내용, RPAD(PRO_DATE,8,',') 작성일 "
+	String sql2 = "SELECT PRO_NO 글번호, RPAD(PRO_CONTENT,40,' ') 글내용, RPAD(PRO_DATE,8,',') 작성일 "
 			+ "FROM (SELECT ROWNUM RN, P.* FROM PROFBOARD P) WHERE RN = ?";	
 	try {
 		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
@@ -115,13 +115,13 @@ public class ProfAnnounce {
 		rs2 = pstmt2.executeQuery();
 		
 		while(rs2.next()) {
-			System.out.println("\n 글번호 " + "|" + "           내 용         " + "|" + "   작성일 ");
+			System.out.println("\n 글번호 " + "|" +"  작성일  " + "|" + "      내 용         " );
 			System.out.println("-----------------------------------");
-			System.out.print("  "+rs2.getInt("글번호")+"  ");
-			System.out.print("|");
-			System.out.print(rs2.getString("글내용"));
+			System.out.print("   "+rs2.getInt("글번호")+"  ");
 			System.out.print("|");
 			System.out.print(rs2.getString("작성일"));
+			System.out.print("|");
+			System.out.print(rs2.getString("글내용"));
 			System.out.println("\n===================================\n");
 			
 		}
