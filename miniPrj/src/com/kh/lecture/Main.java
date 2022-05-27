@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		new FindLecture().findbyProfClass();
+		new RegistrationLecture().RegistrationClass(1);
 	}
 
 }

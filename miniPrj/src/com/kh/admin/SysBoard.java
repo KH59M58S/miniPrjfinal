@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import com.kh.util.Util;
 import com.swy.db.OracleDB;
@@ -92,7 +94,7 @@ public class SysBoard {
 	
 	public void showAllSysBoard() {
 
-		String sql = "SELECT SYS_NO,SYS_TITLE FROM SYSBOARD";
+		String sql = "SELECT SYS_NO,SYS_TITLE,SYS_DATE FROM SYSBOARD";
 		
 		Connection conn = OracleDB.getConnection();
 		
@@ -102,11 +104,13 @@ public class SysBoard {
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
-			System.out.println("번호\t\t\t제목");
+			System.out.println("번호\t\t\t제목\t\t\t작성일");
 			while (rs.next()) {
 				int no = rs.getInt(1);
 				String title = rs.getString(2);
-				System.out.println(no + "\t\t" + title );
+				DateFormat df = new SimpleDateFormat("yy/MM/dd");
+				String date = df.format(rs.getDate(3));
+				System.out.println(no + "\t\t" + title + "\t\t\t\t" +  date);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
