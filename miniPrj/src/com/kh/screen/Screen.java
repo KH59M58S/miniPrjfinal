@@ -10,6 +10,7 @@ public class Screen {
 	
 	//메인화면 가는 메뉴
 	public static void mainMenu_show() {
+
 		System.out.println("==== 메인 화면 ====");
 		System.out.println("1. 회원가입");
 		System.out.println("2. 로그인");
@@ -17,6 +18,7 @@ public class Screen {
 		System.out.println("4. 비밀번호 찾기");
 		System.out.println("5. 종료하기");
 		int input = Util.scInt();
+		
 		
 		switch(input) {
 		case 1 : new SignUp().join();
@@ -146,7 +148,6 @@ public class Screen {
 //	 1) 출석클래스 
 //     2) 강의관련클래스 
 //     3) 학과공지클래스
-	
 	
 	
 }
