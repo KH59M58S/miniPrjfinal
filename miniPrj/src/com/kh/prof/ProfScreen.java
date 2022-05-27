@@ -3,6 +3,7 @@ package com.kh.prof;
 import java.util.Scanner;
 
 import com.kh.stu.Login;
+import com.kh.stu.stuMenu;
 import com.kh.util.Util;
 
 
@@ -11,11 +12,11 @@ public class ProfScreen {
 	
 	public static void profScreenStart() {
 		while(true) {
-			System.out.println("==== 교수 화면 메인 ====");
+			System.out.println("\n==== 교수 화면 메인 ====");
 			System.out.println("1. 출석");
-			System.out.println("2. 학과 공지");
+			System.out.println("2. 학사 공지");
 			System.out.println("3. 강의 관련");
-			System.out.println("4. 뒤로가기");
+			System.out.println("4. 로그아웃");
 			int input = Util.scInt();
 	
 		switch (input){
@@ -30,13 +31,13 @@ public class ProfScreen {
 			} else if(a == 2 ) {
 				new ProfAtt().stuAttendence();
 			} else {
-				System.out.println("잘못 누르셨습니다.");
+				System.out.println("잘못 선택하셨습니다 ...");
 			} break;
 			
-		case 2: new ProfAnnounce().board(); break;
+		case 2: new ProfAnnounce().board(); break; //교수전용목록으로 보임
 		case 3: new ProfClass().ClassList(); break;
-		case 4: new Login().try_login(); break;//System.out.println("뒤로가기"); break;
-		default : System.out.println("잘못선택하셨습니다.");
+		case 4: new Login().try_login(); break;//로그인하는 메소드로 이동
+		default : System.out.println("잘못 선택하셨습니다 ...");
 	
 		}
 	}
