@@ -15,10 +15,10 @@ public class ProfClass {
 	
 	public static void ClassList() {
 				System.out.println("===== 전체 강의 목록 보기 =====");
-				System.out.println("    1. 전체 신청 리스트 조회     ");
-				System.out.println("    2. 학생별 강의 신청 내역 조회  ");
-				System.out.println("    3. 강의별 신청 내역 조회     ");
-				System.out.println("    4. 뒤로가기               ");
+				System.out.println("1. 전체 신청 리스트 조회     ");
+				System.out.println("2. 학생별 강의 신청 내역 조회  ");
+				System.out.println("3. 강의별 신청 내역 조회     ");
+				System.out.println("4. 뒤로가기               ");
 				int input = Util.scInt();
 				
 				
@@ -48,9 +48,6 @@ public class ProfClass {
 	}
 
 	
-	public static void main(String[] args) {
-		ClassList();
-	}
 	
 	
 	
