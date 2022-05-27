@@ -95,7 +95,7 @@ public class ProfAtt {
 				int a_no = rs.getInt(1);
 				Timestamp a_time = rs.getTimestamp(2);
 				byte a_check = rs.getByte(3);
-//				int stu_no = rs.getInt(4);
+				//int stu_no = rs.getInt(4);
 				
 				
 				System.out.print(a_no +" 번 학생의 출석 번호");
