@@ -1,6 +1,7 @@
 package com.kh.stu;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,8 @@ public class MyInfo {
 	public static Connection conn = OracleDB.getConnection();
 	public static PreparedStatement pstmt = null;
 	public static ResultSet rs = null;
+	
+	public static int yn_Num;
 
 	public static void ShowInfo() {
 
@@ -115,21 +118,92 @@ public class MyInfo {
 	public static void stu_QuitYN_Search() {
 		System.out.println("탈퇴된 학생 계정 리스트를 불러 오는중...");
 		System.out.println("==============================");
-		String sql = "SELECT STU_NO, STU_NUM, STU_ENROLL_DATE FROM STUDENT WHERE P_QUIT_YN = 'Y'";
+		System.out.print(" 번호 |  이름  |  아이디  |  가입날짜  | 탈퇴여부");
+		System.out.println();
+		String sql = "SELECT STU_NO, STU_NAME, STU_ID, STU_ENROLL_DATE, STU_QUIT_YN FROM STUDENT WHERE STU_QUIT_YN = 'Y'";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, Util.infono);
-			pstmt.executeQuery();
-			System.out.println("교수 계정 탈퇴 여부 변경 되었습니다. ");
-			System.out.println("종료 하겠습니다.");
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int no= rs.getInt("STU_NO");
+				String name= rs.getString("STU_NAME");
+				String id= rs.getString("STU_ID");
+				Date date= rs.getDate("STU_ENROLL_DATE");
+				String yn =rs.getString("STU_QUIT_YN");
+				
+				System.out.print("  " + no + "    " + name + "    " + id + "   " + date + "   " + yn);
+				System.out.println();
+			}
+			//번호 클릭후 여부 변경 메소드
+			System.out.println("탈퇴 여부 바꿀 계정이 있으신가요?? (있을시 해당 번호 입력, 없을시 -1)");
+			yn_Num= Util.scInt();
+			stuChangeYn(yn_Num);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-
+	
 	public static void prof_QuitYN_Search() {
-
+		System.out.println("탈퇴된 교수 계정 리스트를 불러 오는중...");
+		System.out.println("==============================");
+		System.out.println(" 번호 |  이름  |  아이디  |  가입날짜  | 탈퇴여부");
+		String sql = "SELECT P_NO, P_NAME, P_ID, P_ENROLL_DATE, P_QUIT_YN FROM PROF WHERE P_QUIT_YN = 'Y'";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int no= rs.getInt("P_NO");
+				String name= rs.getString("P_NAME");
+				String id= rs.getString("P_ID");
+				Date date= rs.getDate("P_ENROLL_DATE");
+				String yn =rs.getString("P_QUIT_YN");
+				
+				System.out.print("  " + no + "    " + name + "    " + id + "   " + date + "   " + yn);
+				System.out.println();
+			}
+			//번호 클릭후 여부 변경 메소드
+			System.out.println("탈퇴 여부 바꿀 계정이 있으신가요?? (있을시 해당 번호 입력, 없을시 -1)");
+			yn_Num= Util.scInt();
+			profChangeYn(yn_Num);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+
+	public static void stuChangeYn(int Num) {
+		if(Num==-1) {
+			new stuMenu().showMenu();
+		}
+		String sql = "UPDATE STUDENT SET STU_QUIT_YN = 'N' WHERE STU_NO= ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Num);
+			pstmt.executeUpdate();
+			rs.next();
+			System.out.println("학생 계정 탈퇴 여부 변경 되었습니다. ");
+			System.out.println("종료 하겠습니다.");
+			//번호 클릭후 여부 변경 메소드
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void profChangeYn(int Num) {
+		if(Num==-1) {
+			new stuMenu().showMenu();
+		}
+		String sql = "UPDATE PROF SET P_QUIT_YN = 'N' WHERE P_NO= ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Num);
+			pstmt.executeUpdate();
+			rs.next();
+			System.out.println("교수 계정 탈퇴 여부 변경 되었습니다. ");
+			System.out.println("종료 하겠습니다.");
+			//번호 클릭후 여부 변경 메소드
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
