@@ -16,11 +16,8 @@ public class LSignUpUI {
 
 		while (true) {
 			System.out.println("++++++++++++++++++++++++++++");
-			System.out.println("1. 수강신청");
-			System.out.println("2. 강의명별 검색");
-			System.out.println("3. 교수명별 검색");
-			System.out.println("4. 수강신청 취소");
-			System.out.println("0. 이전 단계");
+			System.out.println("1. 수강신청  2. 강의명별 검색  3. 교수명별 검색");
+			System.out.println("4. 수강신청 취소  0. 이전 단계");
 			System.out.println("++++++++++++++++++++++++++++");
 
 			System.out.print("입력창 : ");

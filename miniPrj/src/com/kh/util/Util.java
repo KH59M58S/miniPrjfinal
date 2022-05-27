@@ -177,7 +177,7 @@ public class Util {
 		return result;
 	}
 	
-	// 부서 개수
+	// 부서 개수=======================================================================================
 	public static int countDept() {
 		Connection conn = OracleDB.getConnection();
 		
@@ -200,6 +200,51 @@ public class Util {
 		
 		return cnt;
 		
+	}
+	
+	//왼쪽 정렬========================================================================================
+	public static String lPadding(String str,String pad, int length) {
+		String result = str;
+		
+		int padl = length - str.length();
+		for(int i = 0;i<padl;++i) {
+			result += pad;
+		}
+		
+		return result;
+	}
+	
+
+	//오른쪽 정렬========================================================================================
+	public static String rPadding(String str,String pad, int length) {
+		String result = "";
+		
+		int padl = length - str.length();
+		for(int i = 0;i<padl;++i) {
+			result += pad;
+		}
+		result += str;
+		
+		return result;
+	}
+	
+
+	//가운대 정렬========================================================================================
+	public static String cPadding(String str,String pad, int length) {
+		String result = "";
+		
+		int padl = (length - str.length())/2;
+		for(int i = 0;i<padl;++i) {
+			result += pad;
+		}
+		
+		result += str;
+		
+		for(int i = 0;i<padl;++i) {
+			result += pad;
+		}
+		
+		return result;
 	}
 	
 }

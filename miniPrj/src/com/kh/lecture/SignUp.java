@@ -4,13 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.kh.db.OracleDB;
 import com.kh.util.Util;
 
 public class SignUp {
 
-	// 전체 신청 리스트 조회
+	// 전체 신청 리스트
+	// 조회=====================================================================================================
 	public static void showAllSignupList() {
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
@@ -22,9 +22,12 @@ public class SignUp {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
 
+			System.out.println(Util.cPadding("이름", " ", 6) + "|" + Util.cPadding("강의명", " ", 20) + "|"
+					+ Util.cPadding("신청일자", " ", 15));
+			System.out.println("--------------------------------------------------");
 			while (rs.next()) {
-				System.out.println(
-						"이름:" + rs.getString(1) + "  " + "강의명:" + rs.getString(2) + "  " + "신청일자:" + rs.getDate(3));
+				System.out.println(Util.cPadding(rs.getString(1), " ", 6) + Util.cPadding(rs.getString(2), " ", 20)
+						+ Util.cPadding(rs.getString(3), " ", 15));
 			}
 
 		} catch (SQLException e) {
@@ -77,10 +80,15 @@ public class SignUp {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
+			System.out.println("----------------------------------------------------------");
+			System.out.println(Util.cPadding("이름", " ", 6) + "|" + Util.cPadding("강의번호", " ", 4) + "|"
+					+ Util.cPadding("강의명", " ", 20) + "|" + Util.cPadding("신청일자", " ", 15));
+			System.out.println("----------------------------------------------------------");
 
 			while (rs.next()) {
-				System.out.println("이름:" + rs.getString(1) + "  강의번호:" + rs.getInt(2) + "  강의명:" + rs.getString(3)
-						+ "  신청일자:" + rs.getDate(4));
+				System.out.println(Util.cPadding(rs.getString(1), " ", 6) + "|" + Util.cPadding(rs.getString(2), " ", 4)
+						+ "|" + Util.cPadding(rs.getString(3), " ", 20) + "|"
+						+ Util.cPadding(rs.getString(4), " ", 15));
 			}
 
 		} catch (SQLException e) {
@@ -108,10 +116,13 @@ public class SignUp {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
-
+			System.out.println("----------------------------------------------------------");
+			System.out.println(Util.cPadding("이름", " ", 6) + "|" + Util.cPadding("강의명", " ", 20) + "|"
+					+ Util.cPadding("신청일자", " ", 15));
+			System.out.println("----------------------------------------------------------");
 			while (rs.next()) {
-				System.out.println(
-						"강의명:" + rs.getString(1) + "  " + "이름:" + rs.getString(2) + "  " + "신청일자:" + rs.getDate(3));
+				System.out.println(Util.cPadding(rs.getString(2), " ", 6) + "|"
+						+ Util.cPadding(rs.getString(1), " ", 20) + "|" + Util.cPadding(rs.getString(3), " ", 15));
 			}
 
 		} catch (SQLException e) {
@@ -137,10 +148,16 @@ public class SignUp {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
+			System.out.println("----------------------------------------------------------");
+			System.out.println(Util.cPadding("강의번호", " ", 6) + "|" + Util.cPadding("강의명", " ", 20) + "|"
+					+ Util.cPadding("시간", " ", 20) + "|" + Util.cPadding("강의실", " ", 4) + "|"
+					+ Util.cPadding("교수명", " ", 6));
+			System.out.println("----------------------------------------------------------");
 
 			while (rs.next()) {
-				System.out.println("강의번호:" + rs.getString(1) + "  강의명:" + rs.getString(2) + "  시간:" + rs.getString(3)
-						+ "  강의실:" + rs.getString(4) + "  교수명:" + rs.getString(5));
+				System.out.println(Util.cPadding(rs.getString(1), " ", 6) + "|"
+						+ Util.cPadding(rs.getString(2), " ", 20) + "|" + Util.cPadding(rs.getString(3), " ", 20) + "|"
+						+ Util.cPadding(rs.getString(4), " ", 4) + "|" + Util.cPadding(rs.getString(5), " ", 6));
 			}
 
 		} catch (SQLException e) {
@@ -155,6 +172,10 @@ public class SignUp {
 		}
 	}
 
+	public static void main(String[] args) {
+		showAllLectureList();
+	}
+
 	// 수강신청 취소
 	public static int deleteSignUp(int c_no) {
 		Connection conn = OracleDB.getConnection();
@@ -167,7 +188,7 @@ public class SignUp {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Util.infono);
 			pstmt.setInt(2, c_no);
-			result = pstmt.executeUpdate(); // 안됨
+			result = pstmt.executeUpdate();
 
 			return result;
 
@@ -182,10 +203,5 @@ public class SignUp {
 
 		return 0;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println("start");
-		System.out.println(deleteSignUp(1));
-		System.out.println("end");
-	}
+
 }
