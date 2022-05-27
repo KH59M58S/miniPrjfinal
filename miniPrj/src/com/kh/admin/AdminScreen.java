@@ -73,7 +73,7 @@ public class AdminScreen {
 		System.out.println("===== 출석 선택 =====");
 		System.out.println("1. 강의별 출석 보기");
 		System.out.println("2. 강의별 학생 보기");
-		System.out.println("3. 해당 일의 출석 학생");
+		System.out.println("3. 강의의 해당 일의 출석 학생");
 		int input = Util.scInt();
 		switch (input) {
 		case 1: new AdminAtt().AdminClassAtt();

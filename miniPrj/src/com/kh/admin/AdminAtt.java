@@ -5,6 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.sql.Date;
 
 import com.kh.db.OracleDB;
 import com.kh.util.Util;
@@ -98,8 +102,59 @@ public class AdminAtt {
 
 	}
 	
+	public void dayatAtt() {
+		
+		Connection conn = OracleDB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("과목을 입력하세요.");
+		String c_name = Util.sc.nextLine();
+		System.out.println("ex) 22-05-27");
+		System.out.println("시간을 입력하세요");
+		String a_time = Util.sc.nextLine();
+		
+		try {
+			String sql = 
+					"SELECT S.STU_NAME "
+					+ " FROM C_" + Util.classNameToNo(c_name) + "_ATT  C "
+							+ " INNER JOIN STUDENT S"
+							+ " ON S.STU_NO = C.STU_NO"
+							+ " WHERE TO_CHAR(C.A_TIME,'YY-MM-DD') = '"+ a_time + "'"; 
+			
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+		
+			
+			
+			while (rs.next()) {
+				
+				String stuname = rs.getString(1);
+				System.out.println("강의명 : " + c_name);
+				System.out.println("날짜 : " + a_time);
+				System.out.print("학생명 : " );
+				System.out.print(stuname + " ");
+			}
+
+
+		} catch (SQLException e) {
+			System.out.println("없는 강의 입니다.");
+			stuInClass();
+		} finally {
+			if (conn == null)
+				OracleDB.close(conn);
+			if (pstmt == null)
+				OracleDB.close(pstmt);
+			if (rs == null)
+				OracleDB.close(rs);
+
+		}
+
+	
+	}
+	
 	public static void main(String[] args) {
-		new AdminAtt().stuInClass();
+		new AdminAtt().dayatAtt();
 	}
 	
 
