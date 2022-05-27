@@ -133,5 +133,9 @@ public class Util {
 		
 		return result;
 	}
+	public static void main(String[] args) {
+		System.out.println(classNameToNo("파이썬"));
+		
+	}
 	
 }
