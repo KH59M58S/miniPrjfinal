@@ -1,5 +1,6 @@
 package com.kh.lecture;
 
+import com.kh.stu.stuMenu;
 import com.kh.util.Util;
 
 public class LSignUpUI {
@@ -26,7 +27,7 @@ public class LSignUpUI {
 			int chose = Util.scInt();
 			if (chose == 0) {
 				System.out.println("이전 페이지...");
-				break;
+				stuMenu.showMenu();
 			} else if (chose == 1) {
 				while (true) {
 					System.out.print("신청할 강의번호 입력(이전 단계 = 0) : ");
@@ -34,7 +35,7 @@ public class LSignUpUI {
 
 					if (c_no == 0) {
 						System.out.println("이전 페이지...");
-						break;
+						LSingUpUIStart(Util.infono);
 					}
 					if (SignUp.insertSignUp(c_no, std_no)) {
 						System.out.println("신청완료!!!");
@@ -59,7 +60,7 @@ public class LSignUpUI {
 					
 					if (c_no == 0) {
 						System.out.println("이전 페이지...");
-						break;
+						LSingUpUIStart(Util.infono);
 					}
 					int res = SignUp.deleteSignUp(c_no);
 					

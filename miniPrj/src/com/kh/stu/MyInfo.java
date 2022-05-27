@@ -56,6 +56,45 @@ public class MyInfo {
 		}
 
 	}
+	
+	public static void ShowProfInfo() {
+
+		System.out.println("나의 정보");
+		System.out.println("=====================");
+		System.out.print("현재 계정은 : ");
+		System.out.println(Util.info + " 계정입니다.");
+		System.out.println("=====================");
+		System.out.print("나의 이름은 : ");
+		System.out.println(Util.stdNoToName(Util.infono));
+		System.out.println("=====================");
+		System.out.print("나의 회원번호는 ");
+		System.out.println(Util.infono + " 입니다.");
+		System.out.println("=====================");
+		System.out.print("나의 가입날짜는 ");
+		stu_showMyEnroll(); // 학생 가입날짜 출력
+		System.out.println("=====================");
+		System.out.println("1. 뒤로가기  3. 탈퇴하기");
+		System.out.println("+++++++++++++++++++++");
+
+		int answer = Util.scInt();
+		if (answer == 1) {
+			System.out.println("뒤로 이동하겠습니다.");
+			System.out.println("=====================");
+			new stuMenu().showMenu();
+		} else if (answer == 3) {
+			System.out.println("탈퇴 진행하겠습니다.");
+			System.out.println("탈퇴 하시겠습니까?");
+			System.out.println("1. 탈퇴한다. 2. 돌아간다.");
+			int answer2 = Util.scInt();
+			if (answer2 == 1) {
+				System.out.println("=====================");
+				stu_QuitYN();
+			} else if (answer2 == 2) {
+				ShowInfo();
+			}
+		}
+
+	}
 
 	// 학생 가입 날짜 출력
 	public static void stu_showMyEnroll() {

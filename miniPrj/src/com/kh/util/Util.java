@@ -133,9 +133,48 @@ public class Util {
 		
 		return result;
 	}
-	public static void main(String[] args) {
-		System.out.println(classNameToNo("파이썬"));
+	public static int deptNameToNo(String d_name) {
+		int result = 0;
 		
+		Connection conn = OracleDB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT D_NO FROM DEPT WHERE D_NAME = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, d_name);
+			rs = pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public static int profNotoDeptNo(int p_no) {
+		int result = 0;
+		
+		Connection conn = OracleDB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT D_NO FROM PROF WHERE P_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, p_no);
+			rs = pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 }
