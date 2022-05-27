@@ -1,5 +1,6 @@
 package com.kh.admin;
 
+import com.kh.stu.MyInfo;
 import com.kh.stu.stuMenu;
 import com.kh.util.Util;
 
@@ -9,7 +10,8 @@ public class AdminScreen {
 		int input = 0;
 		System.out.println("1. 출석");
 		System.out.println("2. 시스템 공지사항");
-		System.out.println("3. 로그아웃");
+		System.out.println("3. 계정관리");
+		System.out.println("4. 로그아웃");
 		try {
 			input = Util.scInt();
 		} catch (Exception e) {
@@ -23,6 +25,8 @@ public class AdminScreen {
 			new SysBoard().showAllSysBoard();
 			break;
 		case 3:
+			new MyInfo().selectnum();
+		case 4:
 			Util.infono = 0;
 			Util.info = "";
 			break;

@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.kh.db.OracleDB;
 import com.kh.util.Util;
-import com.swy.db.OracleDB;
 
 public class IDsearch {
 

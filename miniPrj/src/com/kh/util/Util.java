@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.swy.db.OracleDB;
+import com.kh.db.OracleDB;
 
 public class Util {
 	

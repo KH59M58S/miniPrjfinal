@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.kh.db.OracleDB;
 import com.kh.util.Util;
-import com.swy.db.OracleDB;
 
 public class RegistrationLecture {
 	

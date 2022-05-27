@@ -6,8 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.kh.db.OracleDB;
+import com.kh.prof.ProfScreen;
+import com.kh.screen.Screen;
 import com.kh.util.Util;
-import com.swy.db.OracleDB;
 
 public class MyInfo {
 
@@ -65,7 +67,7 @@ public class MyInfo {
 		System.out.println(Util.info + " 계정입니다.");
 		System.out.println("=====================");
 		System.out.print("나의 이름은 : ");
-		System.out.println(Util.stdNoToName(Util.infono));
+		System.out.println(Util.profNoToName(Util.infono));
 		System.out.println("=====================");
 		System.out.print("나의 회원번호는 ");
 		System.out.println(Util.infono + " 입니다.");
@@ -80,7 +82,7 @@ public class MyInfo {
 		if (answer == 1) {
 			System.out.println("뒤로 이동하겠습니다.");
 			System.out.println("=====================");
-			new stuMenu().showMenu();
+			new ProfScreen().profScreenStart();
 		} else if (answer == 3) {
 			System.out.println("탈퇴 진행하겠습니다.");
 			System.out.println("탈퇴 하시겠습니까?");
@@ -88,7 +90,7 @@ public class MyInfo {
 			int answer2 = Util.scInt();
 			if (answer2 == 1) {
 				System.out.println("=====================");
-				stu_QuitYN();
+				prof_QuitYN();
 			} else if (answer2 == 2) {
 				ShowInfo();
 			}
@@ -135,6 +137,7 @@ public class MyInfo {
 			pstmt.executeUpdate();
 			System.out.println("학생 계정 탈퇴 여부 변경 되었습니다. ");
 			System.out.println("종료 하겠습니다.");
+			Screen.mainMenu_show();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -149,6 +152,7 @@ public class MyInfo {
 			pstmt.executeUpdate();
 			System.out.println("교수 계정 탈퇴 여부 변경 되었습니다. ");
 			System.out.println("종료 하겠습니다.");
+			Screen.mainMenu_show();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -244,5 +248,37 @@ public class MyInfo {
 			e.printStackTrace();
 		}
 	}
+
+	public static void selectnum() {
+		System.out.println("1. 학생 계정 관리");
+		System.out.println("2. 교수 계정 관리");
+		int num = Util.scInt();
+		
+		if(num ==1) {
+			stu_QuitYN_Search();
+		} else if(num ==2) {
+			prof_QuitYN_Search();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
