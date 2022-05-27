@@ -81,7 +81,6 @@ public class RegistrationLecture {
 		
 		Statement stmt = null;
 		String createSql = "CREATE TABLE C_"+seq+"_ATT("
-				+ " A_NO NUMBER PRIMARY KEY,"
 				+ " A_TIME TIMESTAMP DEFAULT SYSDATE,"
 				+ " A_CHECK CHAR(1), "
 				+ " STU_NO NUMBER,"

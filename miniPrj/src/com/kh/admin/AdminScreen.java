@@ -1,5 +1,6 @@
 package com.kh.admin;
 
+import com.kh.screen.EnterKey;
 import com.kh.stu.stuMenu;
 import com.kh.util.Util;
 
@@ -10,6 +11,7 @@ public class AdminScreen {
 		System.out.println("1. 출석");
 		System.out.println("2. 시스템 공지사항");
 		System.out.println("3. 로그아웃");
+		new EnterKey();
 		try {
 			input = Util.scInt();
 		} catch (Exception e) {
@@ -31,7 +33,6 @@ public class AdminScreen {
 	}
 
 	public void showSysBoardMenu() {
-
 		System.out.println("글 번호 선택");
 		if (Util.info.equals("admin")) {
 			System.out.println("글 쓰기 : -2");

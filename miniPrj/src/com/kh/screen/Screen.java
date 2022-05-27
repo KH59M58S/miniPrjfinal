@@ -12,17 +12,18 @@ public class Screen {
 	public static void mainMenu_show() {
 		
 		System.out.print("\n\n\n");
-		System.out.print("		#   #  #  #      #   #  #   #  ###  #    #");
-		System.out.print("		# #    #  #      #   #  ##  #   #   #    #");
-		System.out.print("		##     ####      #   #  # # #   #   #    #");
-		System.out.print("		# #    #  #      #   #  #  ##   #    #  #");
-		System.out.print("		#  #   #  #      #####  #   #  ###    #");
+		System.out.println("		#   #  #  #      #   #  #   #  ###  #    #");
+		System.out.println("		# #    #  #      #   #  ##  #   #   #    #");
+		System.out.println("		##     ####      #   #  # # #   #   #    #");
+		System.out.println("		# #    #  #      #   #  #  ##   #    #  #");
+		System.out.println("		#  #   #  #      #####  #   #  ###    #");
 		System.out.println("==== 메인 화면 ====");
 		System.out.println("1. 회원가입");
 		System.out.println("2. 로그인");
 		System.out.println("3. 아이디 찾기");
 		System.out.println("4. 비밀번호 찾기");
 		System.out.println("5. 종료하기");
+		new EnterKey();
 		int input = Util.scInt();
 		
 		

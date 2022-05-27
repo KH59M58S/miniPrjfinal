@@ -4,12 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-//		new Admin().signUp();
-		new AdminScreen().adminscreen();
-		
-		
-
-		
+		new SysBoard().showAllSysBoard();
 	}
 
 }
