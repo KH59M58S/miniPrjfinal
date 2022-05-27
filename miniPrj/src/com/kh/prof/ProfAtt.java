@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import com.kh.db.OracleDB;
 import com.kh.util.Util;
-import com.swy.db.OracleDB;
 
 public class ProfAtt {
 	// 2. DB에서 데이터 가져오기 (영어를 입력하면 영어를 듣는 학생들의 출석부 가져오기)
@@ -59,44 +59,5 @@ public class ProfAtt {
 
 	}
 
-	// 강사님 교수가 학생별로 출석부를 조회하게 하고 싶은데 잘 안 돼요 ㅜㅜ
-	// 구현하려는 기능은 (교수 창에서) 학생 번호를 입력받아서 , 예를 들면 1번을 입력하면 1번 학생 번호에 해당하는 모든 과목의 출석부
-	// (오라클에 create해둔 출석 테이블이 3개 있습니다. -> C_1_ATT, C_2_TT, C_3_ATT)를 가져오려고 하는데..
-	// 결과가 1번학생 자바프로그래밍 출석부, 파이썬 출석부, 데이터베이스 출석부(데이터는 출석번호(A_NO), 출석시간(A_TIME),
-	// 출석여부(A_CHECK), 학생번호(STUE_NO) 4개의 컬럼을
-	// 만들어놨습니다.)
-	// 이런식으로 출력되었으면 해요. 제 머리로는 한계가 있어서 여쭤봅니다 ,,, 계속 붙잡고 있어도 잘 안 되네요 ,,
-
-	public static void stuAttendence() { // 해당 학생 출석부
-		// 1. 학생 번호 입력
-		System.out.println("학생 번호를 입력하세요.");
-		int stu_no = Util.scInt();
-
-		String sql = "SELECT * FROM C_?_ATT WHERE STU_NO = ?";
-
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, stu_no);
-			ResultSet rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-
-				int a_no = rs.getInt(1);
-				Timestamp a_time = rs.getTimestamp(2);
-				byte a_check = rs.getByte(3);
-				// int stu_no = rs.getInt(4);
-
-				System.out.print(a_no + " 번 학생의 출석 번호");
-				System.out.print(a_time);
-				System.out.print(a_check);
-				System.out.print(stu_no + " 번 학생의 학번 ");
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
 
 }

@@ -5,11 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
+import com.kh.db.OracleDB;
 import com.kh.lecture.RegistrationLecture;
 import com.kh.lecture.SignUp;
 import com.kh.util.Util;
-import com.swy.db.OracleDB;
 
 public class ProfClass {
 

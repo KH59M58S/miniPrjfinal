@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import com.kh.db.OracleDB;
 import com.kh.util.Util;
-import com.swy.db.OracleDB;
 
 public class SysBoard {
 	

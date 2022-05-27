@@ -1,4 +1,4 @@
-package com.swy.db;
+package com.kh.db;
 
 public class GetIp {
 	

@@ -10,8 +10,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.kh.db.OracleDB;
 import com.kh.util.Util;
-import com.swy.db.OracleDB;
 
 public class FindLecture {
 

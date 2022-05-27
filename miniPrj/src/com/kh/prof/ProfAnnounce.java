@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import com.kh.admin.Main;
+import com.kh.db.OracleDB;
 import com.kh.stu.stuMenu;
 import com.kh.util.Util;
-import com.swy.db.OracleDB;
 
 //질문1: pad했는데 왜 크기가 다른지(새로생성한것만그럼..)>크기떄문그런듯, 질문2: 글번호 삭제 후 다시 생성했을 때 그 뒷번호로됨.>시퀀스 원래그럼..
 //표시되는 크기 제한설정>세모, 작성시 교수번호 자동입력>ok, 뒤로가기 구현>ok
