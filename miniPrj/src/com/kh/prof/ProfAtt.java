@@ -26,24 +26,22 @@ public class ProfAtt {
 		// 3. 해당 강의에 맞는 출석부 조회하기
 
 		try {
-			String sql = "SELECT * FROM C_" + Util.classNameToNo(c_name) + "_ATT "; // 바꾸기
+			String sql = "SELECT * FROM C_" + Util.classNameToNo(c_name) + "_ATT "; 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				int a_no = rs.getInt(1);
+//				int a_no = rs.getInt(1);
 				Timestamp a_time = rs.getTimestamp(2);
 				String a_check = rs.getString(3);
 				int stu_no = rs.getInt(4);
 
-				System.out.print("출석번호 : " + a_no + " | ");
-				System.out.print("출석체크 시간 : " + a_time + " | ");
+				
+//				System.out.print("출석번호 : " + a_no + " | ");
+				System.out.print("| 출석체크 시간 : " + a_time + " | ");
 				System.out.print("출석여부 : " + a_check + " | ");
-				System.out.println("학생번호 : " + stu_no + " | ");
+				System.out.println("학생이름 : " + Util.stdNoToName(stu_no) + " | ");
 			}
-//			System.out.println("출석 번호 : " + rs.getString(1) + "\t" + "출석 체크 시간 : " + rs.getDate(2) + "\t"
-//					+ "출석 여부 : "+ rs.getByte(3)+ "학생 번호 : "+rs.getLong(4)
-//					);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
