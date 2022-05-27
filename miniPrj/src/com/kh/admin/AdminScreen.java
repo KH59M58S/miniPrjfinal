@@ -4,6 +4,7 @@ import com.kh.stu.MyInfo;
 import com.kh.stu.stuMenu;
 import com.kh.util.Util;
 
+
 public class AdminScreen {
 
 	public void adminscreen() {
@@ -37,7 +38,7 @@ public class AdminScreen {
 	public void showSysBoardMenu() {
 
 		System.out.println("글 번호 선택");
-		if (Util.info.equals("admin")) {
+		if (Util.info.equals("Admin")) {
 			System.out.println("글 쓰기 : -2");
 		}
 		System.out.println("뒤로가기 : -1");
@@ -50,7 +51,7 @@ public class AdminScreen {
 			new SysBoard().showAllSysBoard();
 		}
 
-		if (Util.info.equals("admin")) {
+		if (Util.info.equals("Admin")) {
 			if (input == -1) {
 				new AdminScreen().adminscreen();
 			} else if (input == -2) {

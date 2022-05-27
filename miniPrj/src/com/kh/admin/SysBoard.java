@@ -44,7 +44,7 @@ public class SysBoard {
 			OracleDB.close(rs);
 		}
 		
-		if ( Util.info.equals("admin")) {
+		if ( Util.info.equals("Admin")) {
 			System.out.println("뒤로가기 : -1 | 글 수정 : -2");
 			int input = Util.scInt();
 			if ( input == -1 ) {
@@ -104,13 +104,21 @@ public class SysBoard {
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
-			System.out.println("번호\t\t\t제목\t\t\t작성일");
+			System.out.println("\n 번호 " + "|" + "  작성일  " + "|" + "        제목        " );
+			System.out.println("===================================");
+//			System.out.println("번호\t\t\t제목\t\t\t작성일");
 			while (rs.next()) {
 				int no = rs.getInt(1);
 				String title = rs.getString(2);
 				DateFormat df = new SimpleDateFormat("yy/MM/dd");
 				String date = df.format(rs.getDate(3));
-				System.out.println(no + "\t\t" + title + "\t\t\t\t" +  date);
+				System.out.print("  " + no + "  ");
+				System.out.print("|");
+				System.out.print(date);
+				System.out.print("|");
+				System.out.print(title);
+				System.out.println("\n-----------------------------------");
+//				System.out.println(no + "\t\t" + title + "\t\t\t\t" +  date);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -156,9 +164,12 @@ public class SysBoard {
 		System.out.print("내용 : ");
 		content = Util.sc.nextLine();
 		
-		String sql2 = "INSERT INTO SYSBOARD(SYS_TITLE,SYS_CONTENT,AD_NO) "
-				+ "VALUES(SYSBOARD_NO.NEXTVAL,?,?,?)";
+		System.out.println("1번입니다");
 		
+		String sql2 = "UPDATE SYSBOARD SET SYS_TITLE = ?,SYS_CONTENT = ?"
+				+ ",AD_NO=? WHERE SYS_NO = ?";
+			
+		System.out.println("2번입니다");
 		
 		Connection conn = OracleDB.getConnection();
 		try {
@@ -166,13 +177,14 @@ public class SysBoard {
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
 			pstmt.setInt(3, Util.infono);
+			pstmt.setInt(4, no);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleDB.close(conn);
 			OracleDB.close(pstmt);
 		}
-		
+		System.out.println("3번입니다");
 		showAllSysBoard();
 		
 		
