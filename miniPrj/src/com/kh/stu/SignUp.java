@@ -15,7 +15,7 @@ public class SignUp {
 	 * <회원가입> 1. 아이디, 비밀번호, 이름, 학과, 전화번호 입력받기 2. 비밀번호 확인(한번 더 입력받는 부분) 3. 아이디 중복 검사
 	 * -> 중복시 출력문 출력 4. 비밀 번호 유효성 검사 5. 비밀 번호 * 로 표시(유틸에서 작업) 6. 디비에 저장
 	 */
-
+	
 	public boolean join() {
 		// 1. 입력받기
 		System.out.println("+++++++++++++++ 회원 가입 +++++++++++++++");
@@ -30,6 +30,12 @@ public class SignUp {
 		if (pwdCheck(pwd1)) {
 			return false;
 		}
+		// 4.비밀번호 확인 - 맞아도 틀려도 메인으로 자꾸 돌아감.ㅠㅜ 
+		//pwd와 pwd1이 틀리면 다시 입력
+		/*if	(pwd != pwd1) {
+		System.out.println("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+		return false;
+			}*/
 		System.out.print("전공 : ");
 		String major = Util.sc.nextLine();
 		System.out.print("전화번호 : ");
@@ -70,19 +76,11 @@ public class SignUp {
 			e.printStackTrace(); // 에러확인
 		}
 
-		// 3. 비밀번호 유효성 검사
-		// 비밀번호 4글자 이상, 특수문자 1개 이상 포함
-
-		// 4.비밀번호 확인
-		// pwd와 pwd1이 틀리면 다시 입력
-		if (pwd != pwd1) {
-			System.out.println("비밀번호가 동일하지  않습니다. 다시 입력해주세요!");
-			return false;
-		}
-
 		return false;
 	}
-
+	
+	// 3. 비밀번호 유효성 검사
+	// 비밀번호 5글자 이상, 특수문자 1개 이상 포함
 	public static boolean pwdCheck(String s) {
 		if (s.length() < 5) {
 			System.out.println("5글자 이상으로 만들어주세요!");
@@ -92,8 +90,11 @@ public class SignUp {
 				// 특수문자 1개 이상 포함
 				System.out.print("특수문자 !, ^, *, . , # 중에 1개 이상 포함해주세요!");
 				return true;
+
 			}
 		}
 		return false;
-	}
+	}				
 }
+
+	
