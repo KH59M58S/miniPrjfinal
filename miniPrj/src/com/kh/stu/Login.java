@@ -5,9 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.kh.admin.Admin;
 import com.kh.admin.AdminScreen;
+import com.kh.main.Main;
 import com.kh.prof.ProfScreen;
-import com.kh.screen.EnterKey;
 import com.kh.screen.Screen;
 import com.kh.util.Util;
 import com.swy.db.OracleDB;
@@ -18,7 +19,6 @@ public class Login {
 	public static void try_login() {
 		System.out.println("++++++++++ 로그인 하려는 계정을 선택해주세요. ++++++++++");
 		System.out.println("1. 학생  2. 교수  3. 관리자");
-		new EnterKey();
 		int num = Util.scInt();
 		if (num == 1) {
 			stu_Login();
@@ -35,13 +35,10 @@ public class Login {
 	// 학생 로그인
 	public static void stu_Login() {
 		System.out.println("+++++ 로그인 하기 +++++");
-		new EnterKey();
-		System.out.println("↓ 아이디를 입력해주세요 ↓");
+		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
-		
-		System.out.println("↓ 비밀번호를 입력해주세요 ↓");
+		System.out.print("비밀번호 : ");
 		String pwd = Util.sc.nextLine();
-		
 
 		// DB연결
 		Connection conn = OracleDB.getConnection();
@@ -83,11 +80,9 @@ public class Login {
 	// 교수 로그인
 	public static void prof_Login() {
 		System.out.println("+++++ 로그인 하기 +++++");
-		new EnterKey();
-		System.out.println("↓ 아이디를 입력해주세요 ↓");
+		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
-		
-		System.out.println("↓ 비밀번호를 입력해주세요 ↓");
+		System.out.print("비밀번호 : ");
 		String pwd = Util.sc.nextLine();
 
 		// DB연결
@@ -130,11 +125,9 @@ public class Login {
 	// 관리자 로그인
 	public static void admin_Login() {
 		System.out.println("+++++ 로그인 하기 +++++");
-		new EnterKey();
-		System.out.println("↓ 아이디를 입력해주세요 ↓");
+		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
-		
-		System.out.println("↓ 비밀번호를 입력해주세요 ↓");
+		System.out.print("비밀번호 : ");
 		String pwd = Util.sc.nextLine();
 
 		// DB연결

@@ -95,7 +95,6 @@ public class SysBoard {
 	public void showAllSysBoard() {
 
 		String sql = "SELECT SYS_NO,SYS_TITLE,SYS_DATE FROM SYSBOARD";
-//		String sql ="SELECT LPAD(SYS_NO,5),LPAD(SYS_TITLE,5),SYS_DATE,5 FROM SYSBOARD";
 		
 		Connection conn = OracleDB.getConnection();
 		
@@ -105,19 +104,13 @@ public class SysBoard {
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
-			String no1 = "번호";
-			String no2 = "제목";
-			String no3 = "작성일";
-			System.out.format("%4s%20s%50s", no1, no2, no3);
-			System.out.println();
+			System.out.println("번호\t\t\t제목\t\t\t작성일");
 			while (rs.next()) {
 				int no = rs.getInt(1);
 				String title = rs.getString(2);
 				DateFormat df = new SimpleDateFormat("yy/MM/dd");
 				String date = df.format(rs.getDate(3));
-				System.out.format("%04d%20s%50s", no, title, date);
-				System.out.println();
-//				System.out.println(no + "\t\t" + title + "\t\t\t\t" +  date);
+				System.out.println(no + "\t\t" + title + "\t\t\t\t" +  date);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
