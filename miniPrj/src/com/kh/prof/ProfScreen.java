@@ -12,11 +12,11 @@ public class ProfScreen {
 	public static void profScreenStart() {
 		while (true) {
 			System.out.println("\n==== 교수 화면 메인 ====");
-			System.out.println("     1. 출석            ");
-			System.out.println("     2. 학사 공지        ");
-			System.out.println("     3. 강의 관련        ");
-			System.out.println("     4. 마이페이지        ");
-			System.out.println("     5. 로그아웃          ");
+			System.out.println("1. 출석            ");
+			System.out.println("2. 학사 공지        ");
+			System.out.println("3. 강의 관련        ");
+			System.out.println("4. 마이페이지        ");
+			System.out.println("5. 로그아웃          ");
 			int input = Util.scInt();
 
 			switch (input) {
@@ -28,9 +28,9 @@ public class ProfScreen {
 				break; // 교수전용목록으로 보임
 			case 3:
 				System.out.println("\n==== 번호를 선택하세요. ====");
-				System.out.println("     1. 전체 강의 목록       ");
-				System.out.println("     2. 강의 추가 하기       ");
-				System.out.println("     3. 뒤로가기            ");
+				System.out.println(" 1. 전체 강의 목록       ");
+				System.out.println(" 2. 강의 추가 하기       ");
+				System.out.println(" 3. 뒤로가기            ");
 				
 				int a = Util.scInt();
 				
