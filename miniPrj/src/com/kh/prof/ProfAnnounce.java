@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import com.kh.admin.Main;
+import com.kh.stu.stuMenu;
 import com.kh.util.Util;
 import com.swy.db.OracleDB;
 
@@ -17,11 +18,12 @@ public class ProfAnnounce {
 
 	public static int input;
 	public static int pno;
-	//교수 공지사항 선택 시 뜨는 화면
+	
+	//교수 학사공지 목록
 	public void board() {
 		while(true) {
 			
-			System.out.println("==== 학과 공지 ====");
+			System.out.println("==== 학사 공지 ====");
 			System.out.println("1. 공지사항 목록");
 			System.out.println("2. 공지사항 작성");
 			System.out.println("3. 공지사항 삭제");
@@ -42,6 +44,28 @@ public class ProfAnnounce {
     
 	}
 	
+	
+	//학생 학사공지 목록
+	public void boardStu() {
+		while(true) {
+			System.out.println("==== 학사 공지 ====");
+			System.out.println("1. 공지사항 목록");
+			System.out.println("2. 뒤로가기");
+			
+			int abc = Util.scInt();
+			switch(abc) {
+			case 1 : boardlist();break; 
+			case 2 : new stuMenu().showMenu();break;
+			default : System.out.println("잘못 선택하셨습니다...");return;
+			}
+			
+		}
+		
+		
+		
+	}
+	
+	
 	//1. 공지사항 목록 >> ******실행 OK
 	public void boardlist() {
 	//1-1 공지사항테이블 목록 보여주기 ******실행 OK
@@ -50,7 +74,7 @@ public class ProfAnnounce {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT LPAD(ROWNUM,5,' ') 순서, RPAD(SUBSTR(PRO_TITLE,1,20),25,'_') 글제목, RPAD(PRO_DATE,8,',') 작성일 "
+		String sql = "SELECT LPAD(ROWNUM,5,' ') 순서, RPAD(SUBSTR(PRO_TITLE,1,20),25,' ') 글제목, RPAD(PRO_DATE,8,',') 작성일 "
 				+ "FROM (SELECT ROWNUM RN, P.* FROM PROFBOARD P ORDER BY PRO_DATE) WHERE ROWNUM <= ?  ";		
 	try {
 		pstmt = conn.prepareStatement(sql);
@@ -82,7 +106,7 @@ public class ProfAnnounce {
 	System.out.println(">>원하는 글의 번호 선택하세요");
 	pno = Util.scInt();
 	ResultSet rs2 = null;
-	String sql2 = "SELECT PRO_NO 글번호, RPAD(PRO_CONTENT,25,'_') 글내용, RPAD(PRO_DATE,8,',') 작성일 "
+	String sql2 = "SELECT PRO_NO 글번호, RPAD(PRO_CONTENT,25,' ') 글내용, RPAD(PRO_DATE,8,',') 작성일 "
 			+ "FROM (SELECT ROWNUM RN, P.* FROM PROFBOARD P) WHERE RN = ?";	
 	try {
 		PreparedStatement pstmt2 = conn.prepareStatement(sql2);
@@ -255,6 +279,7 @@ public class ProfAnnounce {
     	return;
     }
 	
-
+    
+   
     
 }

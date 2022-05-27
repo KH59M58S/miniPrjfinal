@@ -49,7 +49,7 @@ public class stuMenu {
 	public void showCNotice() {
 		System.out.println("학사 공지");
 		System.out.println("=====================");
-		new ProfAnnounce().board();
+		new ProfAnnounce().boardStu();
 	}
 
 	public void showClass() {
