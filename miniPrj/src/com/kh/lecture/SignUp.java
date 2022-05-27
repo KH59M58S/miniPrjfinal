@@ -165,7 +165,7 @@ public class SignUp {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, Util.infono);
 			pstmt.setInt(2, c_no);
 			result = pstmt.executeUpdate(); // 안됨
 

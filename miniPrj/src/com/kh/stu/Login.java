@@ -17,7 +17,8 @@ public class Login {
 
 	// 선별
 	public static void try_login() {
-		System.out.println("++++++++++ 로그인 하려는 계정을 선택해주세요. ++++++++++");
+		System.out.println();
+		System.out.println("+++++++++++++++ 로그인 하려는 계정 선택 +++++++++++++++");
 		System.out.println("1. 학생  2. 교수  3. 관리자");
 		int num = Util.scInt();
 		if (num == 1) {
@@ -26,15 +27,16 @@ public class Login {
 			prof_Login();
 		} else if (num == 3) {
 			admin_Login();
-		}else {
+		} else {
 			Screen.mainMenu_show();
 		}
 
 	}
-	
+
 	// 학생 로그인
 	public static void stu_Login() {
-		System.out.println("+++++ 로그인 하기 +++++");
+		System.out.println();
+		System.out.println("+++++ 학생 로그인 하기 +++++");
 		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
 		System.out.print("비밀번호 : ");
@@ -65,7 +67,13 @@ public class Login {
 			} else {
 				System.out.println("로그인 실패!");
 				System.out.println("탈퇴된 계정이거나 비밀번호 오류입니다.");
-				try_login();
+				System.out.println("다시시도(Y/N)");
+				String loginyn = Util.sc.nextLine();
+				if (loginyn.equals("Y") || loginyn.equals("y")) {
+					stu_Login();
+				}else {
+					try_login();
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -79,7 +87,8 @@ public class Login {
 
 	// 교수 로그인
 	public static void prof_Login() {
-		System.out.println("+++++ 로그인 하기 +++++");
+		System.out.println();
+		System.out.println("+++++ 교수 로그인 하기 +++++");
 		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
 		System.out.print("비밀번호 : ");
@@ -110,7 +119,13 @@ public class Login {
 			} else {
 				System.out.println("로그인 실패!");
 				System.out.println("탈퇴된 계정이거나 비밀번호 오류입니다.");
-				try_login();
+				System.out.println("다시시도(Y/N)");
+				String loginyn = Util.sc.nextLine();
+				if (loginyn.equals("Y") || loginyn.equals("y")) {
+					prof_Login();
+				}else {
+					try_login();
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,7 +139,8 @@ public class Login {
 
 	// 관리자 로그인
 	public static void admin_Login() {
-		System.out.println("+++++ 로그인 하기 +++++");
+		System.out.println();
+		System.out.println("+++++ 관리자 로그인 하기 +++++");
 		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
 		System.out.print("비밀번호 : ");
@@ -154,7 +170,13 @@ public class Login {
 				}
 			} else {
 				System.out.println("로그인 실패!");
-				try_login();
+				System.out.println("다시시도(Y/N)");
+				String loginyn = Util.sc.nextLine();
+				if (loginyn.equals("Y") || loginyn.equals("y")) {
+					admin_Login();
+				}else {
+					try_login();
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

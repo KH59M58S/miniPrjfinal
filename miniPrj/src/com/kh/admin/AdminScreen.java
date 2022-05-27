@@ -37,6 +37,7 @@ public class AdminScreen {
 			System.out.println("글 쓰기 : -2");
 		}
 		System.out.println("뒤로가기 : -1");
+		System.out.print("입력 :::  ");
 		int input = 0;
 		try {
 			input = Util.scInt();
@@ -44,8 +45,6 @@ public class AdminScreen {
 			System.out.println("숫자를 넣어주세요");
 			new SysBoard().showAllSysBoard();
 		}
-
-		System.out.print("입력 :::  ");
 
 		if (Util.info.equals("admin")) {
 			if (input == -1) {

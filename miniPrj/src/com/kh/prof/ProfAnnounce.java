@@ -74,7 +74,7 @@ public class ProfAnnounce {
 		PreparedStatement pstmt= null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT LPAD(ROWNUM,5,' ') 순서, RPAD(SUBSTR(PRO_TITLE,1,20),25,' ') 글제목, RPAD(PRO_DATE,8,',') 작성일 "
+		String sql = "SELECT LPAD(ROWNUM,5,' ') 순서, SUBSTR(RPAD(PRO_TITLE,25,' '),1) 글제목, RPAD(PRO_DATE,8,',') 작성일 "
 				+ "FROM (SELECT ROWNUM RN, P.* FROM PROFBOARD P ORDER BY PRO_DATE) WHERE ROWNUM <= ?  ";		
 	try {
 		pstmt = conn.prepareStatement(sql);
@@ -153,8 +153,7 @@ public class ProfAnnounce {
     String title = Util.sc.nextLine();
     System.out.println("내  용 : ");
     String content = Util.sc.nextLine();
-    System.out.println("학과번호 : (1.컴퓨터/2.건축/3.자동차/4.환경)");
-    int dno = Util.scInt();
+    
         
     //DB얻어놓음    
     //DB에 작성하기
@@ -166,7 +165,7 @@ public class ProfAnnounce {
             pstmt.setString(1, title);
             pstmt.setString(2, content);
             pstmt.setInt(3, Util.infono);
-            pstmt.setInt(4, dno);
+            pstmt.setInt(4, Util.profNotoDeptNo(Util.infono));
             
             int result = pstmt.executeUpdate();
             

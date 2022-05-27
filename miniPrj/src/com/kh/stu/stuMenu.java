@@ -4,18 +4,17 @@ import com.kh.admin.Admin;
 import com.kh.admin.SysBoard;
 import com.kh.lecture.LSignUpUI;
 import com.kh.prof.ProfAnnounce;
+import com.kh.screen.Screen;
 import com.kh.util.Util;
 
 public class stuMenu {
 
 	public static void showMenu() {
+		System.out.println();
 		System.out.println("++++++++++ 로그인 화면 메인 ++++++++++");
-		System.out.println("1. 시스템 공지");	//학생기준 화면 보는거라 1. 시스템공지 2.상세보기 3.돌아가기
-		System.out.println("2. 학사 공지");	//학생기준 화면 보는거라 1. 학사 공지 2.상세보기 3.돌아가기
-		System.out.println("3. 수강 관련");	//학생기준 화면 보는거라 1. 강의목록 2. 수강신청 3.돌아가기
-		System.out.println("4. 마이페이지");	//학생기준 화면 보는거라 1. 수강내역 2.자기정보보기 3.돌아가기
-		System.out.println("5. 로그아웃");
-
+		System.out.println("1. 시스템 공지 2. 학사 공지 3. 수강 관련");	//학생기준 화면 보는거라 1. 시스템공지 2.상세보기 3.돌아가기
+		System.out.println("4. 마이페이지 5. 출석체크 6. 로그아웃");	//학생기준 화면 보는거라 1. 학사 공지 2.상세보기 3.돌아가기
+		
 		int num = Util.scInt();
 
 		switch (num) {
@@ -32,7 +31,10 @@ public class stuMenu {
 			new stuMenu().showMyPage();
 			break;
 		case 5:
-			Login.stu_Login();
+			//출석메소드
+			break;
+		case 6:
+			Screen.mainMenu_show();
 			break;
 		default:
 			throw new IllegalArgumentException("잘못된 값 : " + num);
