@@ -65,9 +65,9 @@ public class Login {
 					stuMenu.showMenu();
 				}
 			} else {
+				System.out.println("+++++++++++++++++++++++++++++++++++");
 				System.out.println("로그인 실패!");
-				System.out.println("탈퇴된 계정이거나 비밀번호 오류입니다.");
-				System.out.println("다시시도(Y/N)");
+				System.out.println("탈퇴된 계정이거나 비밀번호 오류입니다. 다시시도(Y/N)");
 				String loginyn = Util.sc.nextLine();
 				if (loginyn.equals("Y") || loginyn.equals("y")) {
 					stu_Login();
@@ -117,9 +117,9 @@ public class Login {
 					ProfScreen.profScreenStart();
 				}
 			} else {
+				System.out.println("+++++++++++++++++++++++++++++++++++");
 				System.out.println("로그인 실패!");
-				System.out.println("탈퇴된 계정이거나 비밀번호 오류입니다.");
-				System.out.println("다시시도(Y/N)");
+				System.out.println("탈퇴된 계정이거나 비밀번호 오류입니다. 다시시도(Y/N)");
 				String loginyn = Util.sc.nextLine();
 				if (loginyn.equals("Y") || loginyn.equals("y")) {
 					prof_Login();
@@ -169,8 +169,8 @@ public class Login {
 					new AdminScreen().adminscreen();
 				}
 			} else {
-				System.out.println("로그인 실패!");
-				System.out.println("다시시도(Y/N)");
+				System.out.println("+++++++++++++++++++++++++++++++++++");
+				System.out.println("로그인 실패! 다시시도(Y/N)");
 				String loginyn = Util.sc.nextLine();
 				if (loginyn.equals("Y") || loginyn.equals("y")) {
 					admin_Login();
