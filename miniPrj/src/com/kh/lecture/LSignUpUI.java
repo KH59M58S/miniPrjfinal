@@ -10,26 +10,26 @@ public class LSignUpUI {
 	// 수강신청 페이지
 	public static void LSingUpUIStart(int std_no) {
 
-		System.out.println();
-		System.out.println("++++++++++ 수강신청 ++++++++++");
 		SignUp.showAllLectureList();
 
 		while (true) {
-			System.out.println("++++++++++++++++++++++++++++");
+			System.out.println("----------------------------------------------------------");
 			System.out.println("1. 수강신청  2. 강의명별 검색  3. 교수명별 검색");
 			System.out.println("4. 수강신청 취소  0. 이전 단계");
-			System.out.println("++++++++++++++++++++++++++++");
 
 			System.out.print("입력창 : ");
 			int chose = 0;
+			
 			try {
 				chose = Util.scInt();
 			} catch (Exception e) {
 				System.out.println("잘못 입력하셨습니다.");
 				LSingUpUIStart(Util.infono);
 			}
+			
 			if (chose == 0) {
 				System.out.println("이전 페이지...");
+				System.out.println();
 				stuMenu.showMenu();
 			} else if (chose == 1) {
 				while (true) {
@@ -44,6 +44,7 @@ public class LSignUpUI {
 
 					if (c_no == 0) {
 						System.out.println("이전 페이지...");
+						System.out.println();
 						LSingUpUIStart(Util.infono);
 					}
 					if (SignUp.insertSignUp(c_no, std_no)) {
@@ -63,6 +64,7 @@ public class LSignUpUI {
 
 			} else if (chose == 4) {
 				while (true) {
+					System.out.println();
 					SignUp.showStdSignUp(Util.infono);
 					System.out.print("취소할 강의번호 입력(이전 단계 = 0) : ");
 					int c_no;
@@ -75,6 +77,7 @@ public class LSignUpUI {
 
 					if (c_no == 0) {
 						System.out.println("이전 페이지...");
+						System.out.println();
 						LSingUpUIStart(Util.infono);
 					}
 					int res = SignUp.deleteSignUp(c_no);
@@ -93,13 +96,8 @@ public class LSignUpUI {
 
 	// 장바구니 기능
 	public static void userSingUpList(int std_no) {
-		System.out.println("++++++++++++ 내가 신청한 강의 +++++++++++++");
+		System.out.println("+++++++++++++++ 내가 신청한 강의 +++++++++++++++");
 		SignUp.showStdSignUp(std_no);
-	}
-
-	// 테스트용 메인메서드 나중에 없앰
-	public static void main(String[] args) {
-		LSingUpUIStart(1);
 	}
 
 }

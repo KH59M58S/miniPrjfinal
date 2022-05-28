@@ -83,7 +83,7 @@ public class SignUp {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
 			System.out.println("----------------------------------------------------------");
-			System.out.println(Util.cPadding("이름", " ", 6) + "|" + Util.cPadding("강의번호", " ", 4) + "|"
+			System.out.println(Util.cPadding("이름", " ", 6) + "|" + Util.cPadding("N", " ", 4) + "|"
 					+ Util.cPadding("강의명", " ", 20) + "|" + Util.cPadding("신청일자", " ", 15));
 			System.out.println("----------------------------------------------------------");
 
@@ -151,8 +151,8 @@ public class SignUp {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
 			System.out.println("----------------------------------------------------------");
-			System.out.println(Util.cPadding("강의번호", " ", 6) + "|" + Util.cPadding("강의명", " ", 20) + "|"
-					+ Util.cPadding("시간", " ", 20) + "|" + Util.cPadding("강의실", " ", 4) + "|"
+			System.out.println(Util.cPadding("N", " ", 6) + "|" + Util.cPadding("강의명", " ", 20) + "|"
+					+ Util.cPadding("TIME", " ", 20) + "|" + Util.cPadding("강의실", " ", 4) + "|"
 					+ Util.cPadding("교수명", " ", 6));
 			System.out.println("----------------------------------------------------------");
 
@@ -174,9 +174,6 @@ public class SignUp {
 		}
 	}
 
-	public static void main(String[] args) {
-		showAllLectureList();
-	}
 
 	// 수강신청 취소
 	public static int deleteSignUp(int c_no) {
