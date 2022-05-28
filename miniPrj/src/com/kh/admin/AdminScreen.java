@@ -2,6 +2,7 @@ package com.kh.admin;
 
 import com.kh.stu.MyInfo;
 import com.kh.stu.stuMenu;
+import com.kh.util.Attenment;
 import com.kh.util.Util;
 
 
@@ -79,9 +80,9 @@ public class AdminScreen {
 		switch (input) {
 		case 1: new AdminAtt().AdminClassAtt();
 			break;
-		case 2: new AdminAtt().stuInClass();
+		case 2: new Attenment().stuInClass();
 			break;
-		case 3: new AdminAtt().dayatAtt();
+		case 3: new Attenment().dayatAtt();
 			break;
 		}
 	}
