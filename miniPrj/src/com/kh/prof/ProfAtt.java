@@ -33,9 +33,9 @@ public class ProfAtt {
 
 			while (rs.next()) {
 
-				Timestamp a_time = rs.getTimestamp(2);
-				String a_check = rs.getString(3);
-				int stu_no = rs.getInt(4);
+				String a_time = rs.getString(1);
+				String a_check = rs.getString(2);
+				int stu_no = rs.getInt(3);
 
 				System.out.println(Util.cPadding("출석체크 시간", " ", 21) + "|" + Util.cPadding("출석여부", " ", 6) + "|"
 						+ Util.cPadding("학생이름", " ", 15));

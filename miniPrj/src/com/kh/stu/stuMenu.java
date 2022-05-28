@@ -57,7 +57,6 @@ public class stuMenu {
 
 	public void showCNotice() {
 		System.out.println();
-		System.out.println("+++++++++++++++ 학사 공지 +++++++++++++++");
 		new ProfAnnounce().boardStu();
 	}
 

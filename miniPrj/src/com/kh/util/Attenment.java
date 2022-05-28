@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.kh.admin.AdminScreen;
 import com.kh.db.OracleDB;
 
 public class Attenment {
@@ -120,9 +121,8 @@ public class Attenment {
 			}
 			System.out.println("===================================");
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("없는 강의 입니다.");
-			stuInClass();
+			System.out.println("없는 강의입니다.");
+			new AdminScreen().AdminAttScreen();
 		} finally {
 			if (conn == null)
 				OracleDB.close(conn);
@@ -166,13 +166,13 @@ public class Attenment {
 				System.out.print(stuname);
 				System.out.print("|  ");
 				System.out.print(a_time);
-				System.out.println("\n-----------------------------------");
+				System.out.println();
 			}
-			System.out.println("===================================");
+			System.out.println("=============================");
 			
 		} catch (SQLException e) {
-			System.out.println("없는 강의 입니다.");
-			stuInClass();
+			System.out.println("없는 강의입니다.");
+			new AdminScreen().AdminAttScreen();
 		} finally {
 			if (conn == null)
 				OracleDB.close(conn);

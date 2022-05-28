@@ -5,10 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
 
 import com.kh.db.OracleDB;
 import com.kh.util.Util;
@@ -41,14 +37,15 @@ public class AdminAtt {
 				
 				System.out.print("출석체크 시간 : " + a_time + " | ");
 				System.out.print("출석여부 : " + a_check + " | ");
-				System.out.println("학생번호 : " + stu_no + " | ");
+				System.out.println("학생이름 : " + Util.stdNoToName(stu_no) + " | ");
 			}
 //			System.out.println("출석 번호 : " + rs.getString(1) + "\t" + "출석 체크 시간 : " + rs.getDate(2) + "\t"
 //					+ "출석 여부 : "+ rs.getByte(3)+ "학생 번호 : "+rs.getLong(4)
 //					);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("없는 강의입니다.");
+			new AdminScreen().AdminAttScreen();
 		} finally {
 			if (conn == null)
 				OracleDB.close(conn);

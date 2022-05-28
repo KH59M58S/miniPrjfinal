@@ -22,7 +22,13 @@ public class Screen {
 			System.out.println("1. 회원가입 2. 로그인 3. 아이디 찾기 ");
 			System.out.println("4. 비밀번호 찾기 5. 종료하기");
 			System.out.print("입력 : ");
-			int input = Util.scInt();
+			int input = 0;
+			try {
+				input = Util.scInt();
+			} catch(NumberFormatException e) {
+				System.out.println("숫자를 입력하세요");
+				mainMenu_show();
+			}
 
 			switch (input) {
 			case 1:

@@ -5,10 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.kh.admin.Admin;
 import com.kh.admin.AdminScreen;
 import com.kh.db.OracleDB;
-import com.kh.main.Main;
 import com.kh.prof.ProfScreen;
 import com.kh.screen.Screen;
 import com.kh.util.Util;

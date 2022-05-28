@@ -16,7 +16,14 @@ public class Util {
 	
 	
 	public static int scInt() {
-		return Integer.parseInt(sc.nextLine());
+		
+		int input = 0;
+		try {
+			input = Integer.parseInt(sc.nextLine());
+		} catch(Exception e) {
+			System.out.println("숫자를 입력하세요");
+		}
+		return input;
 	}
 	
 	//학생번호를 학생 이름으로 반환

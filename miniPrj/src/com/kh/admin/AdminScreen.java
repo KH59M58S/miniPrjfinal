@@ -1,5 +1,6 @@
 package com.kh.admin;
 
+import com.kh.screen.Screen;
 import com.kh.stu.MyInfo;
 import com.kh.stu.stuMenu;
 import com.kh.util.Attenment;
@@ -31,6 +32,7 @@ public class AdminScreen {
 		case 4:
 			Util.infono = 0;
 			Util.info = "";
+			Screen.mainMenu_show();
 			break;
 		}
 

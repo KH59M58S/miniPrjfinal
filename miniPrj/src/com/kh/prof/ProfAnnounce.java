@@ -4,9 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
-import com.kh.admin.Main;
 import com.kh.db.OracleDB;
 import com.kh.stu.stuMenu;
 import com.kh.util.Util;
@@ -46,11 +44,11 @@ public class ProfAnnounce {
 				boardupdate();
 				break;
 			case 5:
-				new ProfScreen().profScreenStart();
+				ProfScreen.profScreenStart();
 				break;
 			default:
 				System.out.println("잘못선택하셨습니다...");
-				return;
+				board();
 			}
 		}
 
@@ -69,11 +67,11 @@ public class ProfAnnounce {
 				boardlist();
 				break;
 			case 2:
-				new stuMenu().showMenu();
+				stuMenu.showMenu();
 				break;
 			default:
 				System.out.println("잘못 선택하셨습니다...");
-				return;
+				boardStu();
 			}
 
 		}
@@ -279,10 +277,6 @@ public class ProfAnnounce {
 		}
 
 	}
-	// 5. 뒤로가기
 
-	public void back() {
-		return;
-	}
 
 }

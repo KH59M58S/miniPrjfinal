@@ -1,11 +1,6 @@
 package com.kh.prof;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import com.kh.db.OracleDB;
 import com.kh.lecture.RegistrationLecture;
 import com.kh.lecture.SignUp;
 import com.kh.util.Util;
@@ -42,7 +37,7 @@ public class ProfClass {
 				String c_name = Util.sc.nextLine();
 				SignUp.showLectureSingUp(c_name); 
 				break;
-			case 4 : new ProfScreen().profScreenStart();break;
+			case 4 : ProfScreen.profScreenStart();break;
 			default : System.out.println("잘못 선택하셨습니다."); break;
 			
 		}

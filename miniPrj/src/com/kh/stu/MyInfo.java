@@ -45,7 +45,7 @@ public class MyInfo {
 			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("뒤로 이동하겠습니다.");
 			System.out.println("+++++++++++++++++++++++++++++++++++");
-			new stuMenu().showMenu();
+			stuMenu.showMenu();
 		} else if (answer == 3) {
 			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("탈퇴 진행하겠습니다.");
@@ -85,7 +85,7 @@ public class MyInfo {
 			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("뒤로 이동하겠습니다.");
 			System.out.println("+++++++++++++++++++++++++++++++++++");
-			new ProfScreen().profScreenStart();
+			ProfScreen.profScreenStart();
 		} else if (answer == 3) {
 			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("탈퇴 진행하겠습니다.");

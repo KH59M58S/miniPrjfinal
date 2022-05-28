@@ -1,10 +1,8 @@
 package com.kh.prof;
 
-import java.util.Scanner;
 
 import com.kh.stu.Login;
 import com.kh.stu.MyInfo;
-import com.kh.stu.stuMenu;
 import com.kh.util.Util;
 
 public class ProfScreen {
@@ -18,7 +16,7 @@ public class ProfScreen {
 			System.out.println("4. 마이페이지        ");
 			System.out.println("5. 로그아웃          ");
 			System.out.print(">>원하시는 메뉴의 번호를 선택하세요 : ");
-			System.out.println();
+			
 			int input = Util.scInt();
 
 			switch (input) {
@@ -37,9 +35,9 @@ public class ProfScreen {
 				int a = Util.scInt();
 				
 				if(a == 1) {
-					new ProfClass().ClassList();
+					ProfClass.ClassList();
 				} else if(a == 2) {
-					new ProfClass().ClassAdd();
+					ProfClass.ClassAdd();
 				} else if(a == 3){
 					new ProfScreen();
 				} else {
@@ -47,10 +45,10 @@ public class ProfScreen {
 				}
 				break;
 			case 4:
-				new MyInfo().ShowProfInfo();
+				MyInfo.ShowProfInfo();
 				break;
 			case 5:
-				new Login().try_login();
+				Login.try_login();
 				break;// 로그인하는 메소드로 이동
 			default:
 				System.out.println("잘못 선택하셨습니다 ...");

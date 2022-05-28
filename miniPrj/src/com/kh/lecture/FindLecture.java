@@ -4,11 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.kh.db.OracleDB;
 import com.kh.util.Util;
@@ -46,7 +41,7 @@ public class FindLecture {
 
 	public void findbyProfClass() {
 
-		System.out.println("교수명 : ");
+		System.out.print("교수명 : ");
 		String p_name = Util.sc.nextLine();
 
 		Connection conn = OracleDB.getConnection();
@@ -82,7 +77,7 @@ public class FindLecture {
 
 	public void findbyRoomClass() {
 
-		System.out.println("강의실명 : ");
+		System.out.print("강의실명 : ");
 		String c_room = Util.sc.nextLine();
 
 		Connection conn = OracleDB.getConnection();
@@ -120,7 +115,7 @@ public class FindLecture {
 	
 	public void findbyNameClass() {
 
-		System.out.println("강의명 : ");
+		System.out.print("강의명 : ");
 		String c_name = Util.sc.nextLine();
 
 		Connection conn = OracleDB.getConnection();
