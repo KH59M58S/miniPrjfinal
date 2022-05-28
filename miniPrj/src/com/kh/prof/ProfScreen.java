@@ -18,6 +18,7 @@ public class ProfScreen {
 			System.out.println("4. 마이페이지        ");
 			System.out.println("5. 로그아웃          ");
 			System.out.print(">>원하시는 메뉴의 번호를 선택하세요 : ");
+			System.out.println();
 			int input = Util.scInt();
 
 			switch (input) {
