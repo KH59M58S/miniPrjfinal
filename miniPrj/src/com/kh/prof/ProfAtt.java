@@ -20,7 +20,8 @@ public class ProfAtt {
 	public void classAttendence() { // 해당 강의의 학생들 전체 출석부
 
 		// 1. 강의 입력
-		System.out.println("++++++++++ 출석 체크 ++++++++++");
+		System.out.println();
+		System.out.println("+++++++++++++++ 출석 체크 +++++++++++++++");
 		System.out.print("과목을 입력하세요 : ");
 		String c_name = Util.sc.nextLine();
 
