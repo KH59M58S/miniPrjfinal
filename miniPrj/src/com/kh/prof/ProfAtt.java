@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import com.kh.db.OracleDB;
-import com.kh.lecture.Att;
 import com.kh.util.Util;
 
 public class ProfAtt {
@@ -35,17 +34,26 @@ public class ProfAtt {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-//				int a_no = rs.getInt(1);
+
 				Timestamp a_time = rs.getTimestamp(2);
 				String a_check = rs.getString(3);
 				int stu_no = rs.getInt(4);
 
+				System.out.println(Util.cPadding("출석체크 시간", " ", 21) + "|" + Util.cPadding("출석여부", " ", 6) + "|"
+						+ Util.cPadding("학생이름", " ", 15));
+				System.out.println("--------------------------------------------------");
 				
-//				System.out.print("출석번호 : " + a_no + " | ");
-				System.out.print("| 출석체크 시간 : " + a_time + " | ");
-				System.out.print("출석여부 : " + a_check + " | ");
-				System.out.println("학생이름 : " + Util.stdNoToName(stu_no) + " | ");
+
+				System.out.print(""+a_time +"  ");
+				System.out.print("     " +a_check);
+				System.out.println( "          " + Util.stdNoToName(stu_no));
+				System.out.println("--------------------------------------------------\n");
+			
 			}
+			
+			
+		
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
