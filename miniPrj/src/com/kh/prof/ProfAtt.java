@@ -21,7 +21,7 @@ public class ProfAtt {
 
 		// 1. 강의 입력
 		System.out.println("+++++++++++++++ 출석 체크 +++++++++++++++");
-		System.out.println(">>과목을 입력하세요 : ");
+		System.out.print(">>과목을 입력하세요 : ");
 		String c_name = Util.sc.nextLine();
 
 		// 3. 해당 강의에 맞는 출석부 조회하기

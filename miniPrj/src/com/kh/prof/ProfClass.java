@@ -15,8 +15,7 @@ public class ProfClass {
 				System.out.println("1. 전체 신청 리스트 조회    2. 학생별 강의 신청 내역 조회   ");
 				System.out.println("3. 강의별 신청 내역 조회    4. 뒤로가기");
 				System.out.print(">>원하시는 메뉴의 번호를 선택하세요 : ");
-				System.out.println();
-				System.out.println();
+				
 				int input = Util.scInt();
 				
 				
