@@ -235,6 +235,7 @@ public class MyInfo {
 			System.out.println("+++++++++++++++++++++++++++++++++++++++");
 			System.out.println("학생 계정 탈퇴 여부 변경 되었습니다. ");
 			System.out.println("종료 하겠습니다.");
+			selectnum();
 			//번호 클릭후 여부 변경 메소드
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -254,6 +255,7 @@ public class MyInfo {
 			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("교수 계정 탈퇴 여부 변경 되었습니다. ");
 			System.out.println("종료 하겠습니다.");
+			selectnum();
 			//번호 클릭후 여부 변경 메소드
 		} catch (SQLException e) {
 			e.printStackTrace();
