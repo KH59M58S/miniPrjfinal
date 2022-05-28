@@ -91,7 +91,7 @@ public class Attenment {
 			String sql = "SELECT SUBSTR(RPAD(S.STU_NAME,10,' '),1,10) " + " FROM C_" + Util.classNameToNo(c_name) + "_ATT  C "
 					+ " INNER JOIN STUDENT S" + " ON S.STU_NO = C.STU_NO";
 			
-			String sql2 = "SELECT SUBSTR(RPAD(C_NAME ,12,' ' ),1,12)FROM CLASS "
+			String sql2 = "SELECT SUBSTR(RPAD(C_NAME ,8,' ' ),1,8)FROM CLASS "
 					+ " WHERE C_NO = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -112,9 +112,9 @@ public class Attenment {
 				cnt ++;
 				String stuname = rs.getString(1);
 				System.out.print("  " + cnt + "     ");
-				System.out.print("|");
+				System.out.print("|    ");
 				System.out.print(cname);
-				System.out.print("|");
+				System.out.print("|   ");
 				System.out.print(stuname);
 				System.out.println("\n-----------------------------------");
 			}
@@ -146,7 +146,7 @@ public class Attenment {
 		String a_time = Util.sc.nextLine();
 
 		try {
-			String sql = "SELECT LPAD(ROWNUM,30,' ') , SUBSTR(RPAD( S.STU_NAME,8,' '),1,40) " + " FROM C_" + Util.classNameToNo(c_name) + "_ATT  C "
+			String sql = "SELECT LPAD(ROWNUM,30,' ') , SUBSTR(RPAD( S.STU_NAME,8,' '),1,8) " + " FROM C_" + Util.classNameToNo(c_name) + "_ATT  C "
 					+ " INNER JOIN STUDENT S" + " ON S.STU_NO = C.STU_NO" + " WHERE TO_CHAR(C.A_TIME,'YY-MM-DD') = '"
 					+ a_time + "'";
 
