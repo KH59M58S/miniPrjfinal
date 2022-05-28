@@ -81,23 +81,44 @@ public class Attenment {
 
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
+		ResultSet rs2 = null;
 		System.out.print("과목을 입력하세요 : ");
 		String c_name = Util.sc.nextLine();
 
 		try {
-			String sql = "SELECT S.STU_NAME " + " FROM C_" + Util.classNameToNo(c_name) + "_ATT  C "
+			String sql = "SELECT SUBSTR(RPAD(S.STU_NAME,10,' '),1,10) " + " FROM C_" + Util.classNameToNo(c_name) + "_ATT  C "
 					+ " INNER JOIN STUDENT S" + " ON S.STU_NO = C.STU_NO";
-
+			
+			String sql2 = "SELECT SUBSTR(RPAD(C_NAME ,12,' ' ),1,12)FROM CLASS "
+					+ " WHERE C_NO = ?";
+			
 			pstmt = conn.prepareStatement(sql);
+			pstmt2 = conn.prepareStatement(sql2);
+			
 			rs = pstmt.executeQuery();
+			pstmt2.setInt(1, Util.classNameToNo(c_name));
+			rs2 = pstmt2.executeQuery();
 			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			System.out.println("\n 순서 " + "|" + "  강의명  " + "|" + "   학생명   ");
+			System.out.println("===================================");
 			while (rs.next()) {
-
+				String cname = null;
+				if (rs2.next()) {
+					cname = rs2.getString(1);
+				}
+				int cnt = 0;
+				cnt ++;
 				String stuname = rs.getString(1);
-				System.out.println("강의명 : " + c_name +"    학생명 : " +stuname);
+				System.out.print("  " + cnt + "     ");
+				System.out.print("|");
+				System.out.print(cname);
+				System.out.print("|");
+				System.out.print(stuname);
+				System.out.println("\n-----------------------------------");
 			}
-
+			System.out.println("===================================");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("없는 강의 입니다.");
@@ -125,7 +146,7 @@ public class Attenment {
 		String a_time = Util.sc.nextLine();
 
 		try {
-			String sql = "SELECT S.STU_NAME " + " FROM C_" + Util.classNameToNo(c_name) + "_ATT  C "
+			String sql = "SELECT LPAD(ROWNUM,30,' ') , SUBSTR(RPAD( S.STU_NAME,8,' '),1,40) " + " FROM C_" + Util.classNameToNo(c_name) + "_ATT  C "
 					+ " INNER JOIN STUDENT S" + " ON S.STU_NO = C.STU_NO" + " WHERE TO_CHAR(C.A_TIME,'YY-MM-DD') = '"
 					+ a_time + "'";
 
@@ -133,15 +154,22 @@ public class Attenment {
 			rs = pstmt.executeQuery();
 
 			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+			
+			System.out.println("\n 번호 " + "|" + "  학생명  " + "|" + "       날 짜       ");
+			System.out.println("=============================");
 			while (rs.next()) {
-
-				String stuname = rs.getString(1);
-				System.out.print("강의명 : " + c_name);
-				System.out.print("   날짜 : " + a_time);
-				System.out.print("   학생명 : ");
-				System.out.println(stuname + " ");
+				int stuNo = rs.getInt(1);
+				String stuname = rs.getString(2);
+				
+				System.out.print(" " + stuNo + "      ");
+				System.out.print("|  ");
+				System.out.print(stuname);
+				System.out.print("|  ");
+				System.out.print(a_time);
+				System.out.println("\n-----------------------------------");
 			}
-
+			System.out.println("===================================");
+			
 		} catch (SQLException e) {
 			System.out.println("없는 강의 입니다.");
 			stuInClass();
