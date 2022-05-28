@@ -45,6 +45,7 @@ public class SignUp {
 
 	// 수강신청
 	public static boolean insertSignUp(int c_no, int stu_no) {
+		
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO SIGNUP (S_NO, C_NO, STU_NO)" + "VALUES(SIGNUP_NO.NEXTVAL,?,?)";
@@ -55,6 +56,7 @@ public class SignUp {
 
 			int resualt = pstmt.executeUpdate();
 			if (resualt == 1) {
+				showStdSignUp(Util.infono);
 				return true;
 			}
 		} catch (SQLException e) {

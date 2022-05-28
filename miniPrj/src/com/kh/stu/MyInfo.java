@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import com.kh.prof.ProfScreen;
 import com.kh.screen.Screen;
 import com.kh.util.Util;
+import com.kh.admin.AdminScreen;
 import com.kh.db.OracleDB;
 
 public class MyInfo {
@@ -215,7 +216,7 @@ public class MyInfo {
 
 	public static void stuChangeYn(int Num) {
 		if(Num==-1) {
-			new stuMenu().showMenu();
+			selectnum();
 		}
 		String sql = "UPDATE STUDENT SET STU_QUIT_YN = 'N' WHERE STU_NO= ?";
 		try {
@@ -233,7 +234,7 @@ public class MyInfo {
 	
 	public static void profChangeYn(int Num) {
 		if(Num==-1) {
-			new stuMenu().showMenu();
+			selectnum();
 		}
 		String sql = "UPDATE PROF SET P_QUIT_YN = 'N' WHERE P_NO= ?";
 		try {
@@ -252,12 +253,16 @@ public class MyInfo {
 	public static void selectnum() {
 		System.out.println("1. 학생 계정 관리");
 		System.out.println("2. 교수 계정 관리");
+		System.out.println("0. 뒤로가기");
+		
 		int num = Util.scInt();
 		
 		if(num ==1) {
 			stu_QuitYN_Search();
 		} else if(num ==2) {
 			prof_QuitYN_Search();
+		}else {
+			new AdminScreen().adminscreen();
 		}
 	}
 	

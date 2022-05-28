@@ -11,26 +11,25 @@ import com.kh.db.OracleDB;
 import com.kh.util.Util;
 
 public class SysBoard {
-	
+
 	public void showSysBoard(int no) {
-		String sql = "SELECT SYS_NO,SYS_DATE, SUBSTR(RPAD(SYS_CONTENT,40,' '),1,40)"
-				+ " FROM SYSBOARD"
+		String sql = "SELECT SYS_NO,SYS_DATE, SUBSTR(RPAD(SYS_CONTENT,40,' '),1,40)" + " FROM SYSBOARD"
 				+ " WHERE SYS_NO = ?";
 //		SUBSTR(RPAD(SYS_TITLE,20,' '),1,40)
 //		"|" + "  제목  " +
 		Connection conn = OracleDB.getConnection();
-		
-		PreparedStatement pstmt = 	null;
+
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
-			
-			if ( rs.next()) {
-				System.out.println("\n  번호 " + "|" +"   작성일   " + "|"+ "      내 용         " );
+
+			if (rs.next()) {
+				System.out.println("\n  번호 " + "|" + "   작성일   " + "|" + "      내 용         ");
 				System.out.println("-----------------------------------");
-				System.out.print("   "+rs.getInt(1)+"  ");
+				System.out.print("   " + rs.getInt(1) + "  ");
 				System.out.print("|");
 				System.out.print(rs.getDate(2));
 //				System.out.print("|");
@@ -38,9 +37,7 @@ public class SysBoard {
 				System.out.print("|");
 				System.out.print(rs.getString(3));
 				System.out.println("\n===================================\n");
-				
-				
-				
+
 //				System.out.println(" 번호 : " + rs.getInt(1));
 //				System.out.println(" 제목 : " + rs.getString(2));
 //				System.out.println(" 작성 시간 : " + rs.getDate(3));
@@ -57,38 +54,43 @@ public class SysBoard {
 			OracleDB.close(pstmt);
 			OracleDB.close(rs);
 		}
-		
-		if ( Util.info.equals("Admin")) {
-			System.out.println("뒤로가기 : -1 | 글 수정 : -2");
-			int input = Util.scInt();
-			if ( input == -1 ) {
-				showAllSysBoard();
-			} else if ( input == -2 ) {
-				editSysBoard(no);
+		try {
+			if (Util.info.equals("Admin")) {
+				System.out.println("뒤로가기 : -1 | 글 수정 : -2");
+				int input = Util.scInt();
+				if (input == -1) {
+					showAllSysBoard();
+				} else if (input == -2) {
+					editSysBoard(no);
+				} else {
+					System.out.println("다시 시도하세요...");
+					showSysBoard(no);
+				}
+			} else if (Util.info.equals("Student")) {
+				System.out.println("뒤로가기 : -1");
+				int input = Util.scInt();
+				if (input == -1) {
+					showAllSysBoard();
+				} else {
+					System.out.println("다시 시도하세요...");
+					showSysBoard(no);
+				}
 			}
-		} else if (Util.info.equals("Student")) {
-			System.out.println("뒤로가기 : -1");
-			int input = Util.scInt();
-			if ( input == -1 ) {
-				showAllSysBoard();
-			}
+		} catch (Exception e) {
+			System.out.println("다시 시도하세요...");
+			showSysBoard(no);
 		}
-		
-		
-		
-		
+
 	}
-	
+
 	public void writeSysBoard() {
-		
-		String sql = "INSERT INTO SYSBOARD(SYS_NO, SYS_TITLE,SYS_CONTENT,AD_NO) "
-				+ "VALUES(SYSBOARD_NO.NEXTVAL,?,?,?)";
+
+		String sql = "INSERT INTO SYSBOARD(SYS_NO, SYS_TITLE,SYS_CONTENT,AD_NO) " + "VALUES(SYSBOARD_NO.NEXTVAL,?,?,?)";
 		System.out.print("제목 : ");
 		String title = Util.sc.nextLine();
 		System.out.print("내용 : ");
 		String content = Util.sc.nextLine();
-		
-		
+
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
 		try {
@@ -96,36 +98,36 @@ public class SysBoard {
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
 			pstmt.setInt(3, Util.infono);
-			
+
 			int wsb = pstmt.executeUpdate();
-			
-			 if(wsb == 1) {
-	              System.out.println("공지작성 완료 !!!");
-	            }else System.out.println("공지작성 실패 ...")
-			 ;
+
+			if (wsb == 1) {
+				System.out.println("공지작성 완료 !!!");
+			} else
+				System.out.println("공지작성 실패 ...");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleDB.close(conn);
 			OracleDB.close(pstmt);
 		}
-		
+
 		showAllSysBoard();
 	}
-	
+
 	public void showAllSysBoard() {
 
 		String sql = "SELECT SYS_NO,SUBSTR(RPAD(SYS_TITLE,40,' '),1,40),SYS_DATE FROM SYSBOARD";
-		
+
 		Connection conn = OracleDB.getConnection();
-		
-		PreparedStatement pstmt = 	null;
+
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+
 			rs = pstmt.executeQuery();
-			System.out.println("\n 번호 " + "|" + "  작성일  " + "|" + "        제목        " );
+			System.out.println("\n 번호 " + "|" + "  작성일  " + "|" + "        제목        ");
 			System.out.println("===================================");
 //			System.out.println("번호\t\t\t제목\t\t\t작성일");
 			while (rs.next()) {
@@ -149,31 +151,28 @@ public class SysBoard {
 			OracleDB.close(pstmt);
 			OracleDB.close(rs);
 		}
-		
+
 		new AdminScreen().showSysBoardMenu();
-		
-	
+
 	}
-	
+
 	public void editSysBoard(int no) {
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String title = null, content = null;
-		String sql = "SELECT SYS_TITLE,SYS_CONTENT "
-				+ " FROM SYSBOARD "
-				+ " WHERE SYS_NO = ? ";
-				
+		String sql = "SELECT SYS_TITLE,SYS_CONTENT " + " FROM SYSBOARD " + " WHERE SYS_NO = ? ";
+
 		try {
 			pstmt = OracleDB.getConnection().prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
-			
-			if ( rs.next()) {
+
+			if (rs.next()) {
 				title = rs.getString(1);
 				content = rs.getString(2);
-			} 
-			
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -184,11 +183,9 @@ public class SysBoard {
 		title = Util.sc.nextLine();
 		System.out.print("내용 : ");
 		content = Util.sc.nextLine();
-		
-		String sql2 = "UPDATE SYSBOARD "
-				+ " SET SYS_TITLE = ?, SYS_CONTENT = ? , AD_NO=? "
-				+ " WHERE SYS_NO = ? ";
-		
+
+		String sql2 = "UPDATE SYSBOARD " + " SET SYS_TITLE = ?, SYS_CONTENT = ? , AD_NO=? " + " WHERE SYS_NO = ? ";
+
 		Connection conn = OracleDB.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql2);
@@ -204,8 +201,6 @@ public class SysBoard {
 			OracleDB.close(pstmt);
 		}
 		showAllSysBoard();
-		
-		
-		
+
 	}
 }

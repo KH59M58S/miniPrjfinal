@@ -36,7 +36,7 @@ public class Login {
 	// 학생 로그인
 	public static void stu_Login() {
 		System.out.println();
-		System.out.println("+++++ 학생 로그인 하기 +++++");
+		System.out.println("+++++++++++++++ 학생 로그인 하기 +++++++++++++++");
 		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
 		System.out.print("비밀번호 : ");
@@ -88,7 +88,7 @@ public class Login {
 	// 교수 로그인
 	public static void prof_Login() {
 		System.out.println();
-		System.out.println("+++++ 교수 로그인 하기 +++++");
+		System.out.println("+++++++++++++++ 교수 로그인 하기 +++++++++++++++");
 		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
 		System.out.print("비밀번호 : ");
@@ -140,7 +140,7 @@ public class Login {
 	// 관리자 로그인
 	public static void admin_Login() {
 		System.out.println();
-		System.out.println("+++++ 관리자 로그인 하기 +++++");
+		System.out.println("+++++++++++++++ 관리자 로그인 하기 +++++++++++++++");
 		System.out.print("아이디 : ");
 		String id = Util.sc.nextLine();
 		System.out.print("비밀번호 : ");

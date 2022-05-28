@@ -20,8 +20,10 @@ public class AdminAtt {
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println("과목을 입력하세요.");
+		System.out.println();
+		System.out.print("과목을 입력하세요 : ");
 		String c_name = Util.sc.nextLine();
+		System.out.println();
 
 		// 3. 해당 강의에 맞는 출석부 조회하기
 
@@ -30,13 +32,13 @@ public class AdminAtt {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			while (rs.next()) {
-				int a_no = rs.getInt(1);
-				Timestamp a_time = rs.getTimestamp(2);
-				String a_check = rs.getString(3);
-				int stu_no = rs.getInt(4);
-
-				System.out.print("출석번호 : " + a_no + " | ");
+				
+				Timestamp a_time = rs.getTimestamp(1);
+				String a_check = rs.getString(2);
+				int stu_no = rs.getInt(3);
+				
 				System.out.print("출석체크 시간 : " + a_time + " | ");
 				System.out.print("출석여부 : " + a_check + " | ");
 				System.out.println("학생번호 : " + stu_no + " | ");

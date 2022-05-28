@@ -5,14 +5,13 @@ import com.kh.stu.stuMenu;
 import com.kh.util.Attenment;
 import com.kh.util.Util;
 
-
 public class AdminScreen {
 
 	public void adminscreen() {
 		int input = 0;
-		System.out.println("1. 강의 관련");
-		System.out.println("2. 시스템 공지사항");
-		System.out.println("3. 계정관리");
+		System.out.println();
+		System.out.println("+++++++++++++++ 관리자 화면 메인 +++++++++++++++");
+		System.out.println("1. 강의 관련   2. 시스템 공지사항   3. 계정관리");
 		System.out.println("4. 로그아웃");
 		try {
 			input = Util.scInt();
@@ -62,7 +61,7 @@ public class AdminScreen {
 				new SysBoard().showSysBoard(input);
 			}
 		} else if (Util.info.equals("Student")) {
-			if ( input == -1) {
+			if (input == -1) {
 				stuMenu.showMenu();
 			} else {
 				new SysBoard().showSysBoard(input);
@@ -70,20 +69,30 @@ public class AdminScreen {
 		}
 
 	}
-	
+
 	public void AdminAttScreen() {
-		System.out.println("===== 출석 선택 =====");
-		System.out.println("1. 강의별 출석 보기");
-		System.out.println("2. 강의별 학생 보기");
-		System.out.println("3. 강의의 해당 일의 출석 학생");
+		System.out.println();
+		System.out.println("+++++++++++++++ 강의 관련 +++++++++++++++");
+		System.out.println("1. 강의별 출석 보기   2. 강의별 학생 보기");
+		System.out.println("3. 강의의 해당 일의 출석 학생   0. 뒤로가기");
 		int input = Util.scInt();
 		switch (input) {
-		case 1: new AdminAtt().AdminClassAtt();
+		case 1:
+			new AdminAtt().AdminClassAtt();
+			AdminAttScreen();
 			break;
-		case 2: new Attenment().stuInClass();
+		case 2:
+			new Attenment().stuInClass();
+			AdminAttScreen();
 			break;
-		case 3: new Attenment().dayatAtt();
+		case 3:
+			new Attenment().dayatAtt();
+			AdminAttScreen();
 			break;
+		default:
+			adminscreen();
+			break;
+
 		}
 	}
 

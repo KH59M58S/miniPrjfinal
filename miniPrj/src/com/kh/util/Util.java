@@ -128,7 +128,6 @@ public class Util {
 			result = rs.getInt(1);
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		
 		return result;

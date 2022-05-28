@@ -21,14 +21,26 @@ public class LSignUpUI {
 			System.out.println("++++++++++++++++++++++++++++");
 
 			System.out.print("입력창 : ");
-			int chose = Util.scInt();
+			int chose = 0;
+			try {
+				chose = Util.scInt();
+			} catch (Exception e) {
+				System.out.println("잘못 입력하셨습니다.");
+				LSingUpUIStart(Util.infono);
+			}
 			if (chose == 0) {
 				System.out.println("이전 페이지...");
 				stuMenu.showMenu();
 			} else if (chose == 1) {
 				while (true) {
 					System.out.print("신청할 강의번호 입력(이전 단계 = 0) : ");
-					int c_no = Util.scInt();
+					int c_no = -1;
+					try {
+						c_no = Util.scInt();
+					} catch (Exception e) {
+						System.out.println("잘못 입력하셨습니다.");
+						continue;
+					}
 
 					if (c_no == 0) {
 						System.out.println("이전 페이지...");
@@ -53,14 +65,20 @@ public class LSignUpUI {
 				while (true) {
 					SignUp.showStdSignUp(Util.infono);
 					System.out.print("취소할 강의번호 입력(이전 단계 = 0) : ");
-					int c_no = Util.scInt();
-					
+					int c_no;
+					try {
+						c_no = Util.scInt();
+					} catch (Exception e) {
+						System.out.println("잘못 입력하셨습니다.");
+						continue;
+					}
+
 					if (c_no == 0) {
 						System.out.println("이전 페이지...");
 						LSingUpUIStart(Util.infono);
 					}
 					int res = SignUp.deleteSignUp(c_no);
-					
+
 					if (res >= 1) {
 						System.out.println("취소완료!!!");
 					} else if (res == 0) {

@@ -24,13 +24,21 @@ public class ProfClass {
 				
 		switch(input){
 			case 1 : 
-				SignUp.showAllSignupList(); break;
+				SignUp.showAllSignupList(); 
+				ClassList();
+				break;
+				
 			case 2 : 
-				SignUp.showStdSignUp(input); break;
+				System.out.print("학생 이름 입력 : ");
+				String input1 = Util.sc.nextLine();
+				SignUp.showStdSignUp(Util.stdNameToNo(input1)); 
+				ClassList();
+				break;
 			case 3 : 
 				System.out.print("강의 이름 입력 : ");
 				String c_name = Util.sc.nextLine();
-				SignUp.showLectureSingUp(c_name); break;
+				SignUp.showLectureSingUp(c_name); 
+				break;
 			case 4 : new ProfScreen().profScreenStart();break;
 			default : System.out.println("잘못 선택하셨습니다."); break;
 			

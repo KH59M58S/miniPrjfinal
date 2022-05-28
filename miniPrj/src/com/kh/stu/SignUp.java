@@ -27,6 +27,10 @@ public class SignUp {
 		String pwd = Util.sc.nextLine();
 		System.out.print("비밀번호 확인 : ");
 		String pwd1 = Util.sc.nextLine();
+		if(!(pwd.equals(pwd1))) {
+			System.out.println("비밀번호가 다릅니다.");
+			return false;
+		}
 		if (pwdCheck(pwd1)) {
 			return false;
 		}
@@ -69,13 +73,15 @@ public class SignUp {
 			int result = pstmt2.executeUpdate();
 
 			if (result == 1) {
+				System.out.println("회원가입 완료!!!");
+				System.out.println();
 				return true;
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace(); // 에러확인
 		}
-
+		
 		return false;
 	}
 	

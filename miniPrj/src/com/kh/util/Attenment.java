@@ -82,7 +82,7 @@ public class Attenment {
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println("과목을 입력하세요.");
+		System.out.print("과목을 입력하세요 : ");
 		String c_name = Util.sc.nextLine();
 
 		try {
@@ -91,13 +91,11 @@ public class Attenment {
 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			while (rs.next()) {
 
 				String stuname = rs.getString(1);
-				System.out.println("강의명 : " + c_name);
-				System.out.print("학생명 : ");
-				System.out.print(stuname + " ");
+				System.out.println("강의명 : " + c_name +"    학생명 : " +stuname);
 			}
 
 		} catch (SQLException e) {
@@ -121,10 +119,9 @@ public class Attenment {
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println("과목을 입력하세요.");
+		System.out.print("과목을 입력하세요 : ");
 		String c_name = Util.sc.nextLine();
-		System.out.println("ex) 22-05-27");
-		System.out.println("시간을 입력하세요");
+		System.out.print("시간을 입력하세요 (ex 22-05-27) : ");
 		String a_time = Util.sc.nextLine();
 
 		try {
@@ -135,13 +132,14 @@ public class Attenment {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
+			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			while (rs.next()) {
 
 				String stuname = rs.getString(1);
-				System.out.println("강의명 : " + c_name);
-				System.out.println("날짜 : " + a_time);
-				System.out.print("학생명 : ");
-				System.out.print(stuname + " ");
+				System.out.print("강의명 : " + c_name);
+				System.out.print("   날짜 : " + a_time);
+				System.out.print("   학생명 : ");
+				System.out.println(stuname + " ");
 			}
 
 		} catch (SQLException e) {
