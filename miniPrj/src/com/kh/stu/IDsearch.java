@@ -11,7 +11,7 @@ import com.kh.util.Util;
 public class IDsearch {
 
 	public static void try_IDFind() {
-		System.out.println("==== 아이디 찾으려는 계정을 선택해주세요. ====");
+		System.out.println("++++++++++ 아이디 찾으려는 계정을 선택해주세요. ++++++++++");
 		System.out.println("1. 학생  2. 교수");
 		int num = Util.scInt();
 		if (num == 1) {
@@ -26,7 +26,7 @@ public class IDsearch {
 	}
 
 	public static void stu_IDFind() {
-		System.out.println("==== 아이디 찾기 ====");
+		System.out.println("++++++++++ 학생 아이디 찾기 ++++++++++");
 		System.out.print("이름 : ");
 		String name = Util.sc.nextLine().trim();
 		System.out.print("전화번호 ex)010-0000-0000 : ");
@@ -64,7 +64,7 @@ public class IDsearch {
 	}
 
 	public static void prof_IDFind() {
-		System.out.println("==== 아이디 찾기 ====");
+		System.out.println("++++++++++ 교수 아이디 찾기 ++++++++++");
 		System.out.print("이름 : ");
 		String name = Util.sc.nextLine().trim();
 		System.out.print("전화번호 ex)010-0000-0000 : ");

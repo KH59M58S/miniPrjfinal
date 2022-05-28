@@ -42,16 +42,17 @@ public class MyInfo {
 
 		int answer = Util.scInt();
 		if (answer == 1) {
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("뒤로 이동하겠습니다.");
-			System.out.println("=====================");
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			new stuMenu().showMenu();
 		} else if (answer == 3) {
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("탈퇴 진행하겠습니다.");
 			System.out.println("탈퇴 하시겠습니까?");
 			System.out.println("1. 탈퇴한다. 2. 돌아간다.");
 			int answer2 = Util.scInt();
 			if (answer2 == 1) {
-				System.out.println("=====================");
 				stu_QuitYN();
 			} else if (answer2 == 2) {
 				ShowInfo();
@@ -81,16 +82,17 @@ public class MyInfo {
 
 		int answer = Util.scInt();
 		if (answer == 1) {
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("뒤로 이동하겠습니다.");
-			System.out.println("=====================");
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			new ProfScreen().profScreenStart();
 		} else if (answer == 3) {
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("탈퇴 진행하겠습니다.");
 			System.out.println("탈퇴 하시겠습니까?");
 			System.out.println("1. 탈퇴한다. 2. 돌아간다.");
 			int answer2 = Util.scInt();
 			if (answer2 == 1) {
-				System.out.println("=====================");
 				prof_QuitYN();
 			} else if (answer2 == 2) {
 				ShowInfo();
@@ -136,8 +138,10 @@ public class MyInfo {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Util.infono);
 			pstmt.executeUpdate();
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("학생 계정 탈퇴 여부 변경 되었습니다. ");
 			System.out.println("종료 하겠습니다.");
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			Screen.mainMenu_show();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -151,8 +155,10 @@ public class MyInfo {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Util.infono);
 			pstmt.executeUpdate();
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("교수 계정 탈퇴 여부 변경 되었습니다. ");
 			System.out.println("종료 하겠습니다.");
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			Screen.mainMenu_show();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -179,6 +185,7 @@ public class MyInfo {
 				System.out.println();
 			}
 			//번호 클릭후 여부 변경 메소드
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("탈퇴 여부 바꿀 계정이 있으신가요?? (있을시 해당 번호 입력, 없을시 -1)");
 			yn_Num= Util.scInt();
 			stuChangeYn(yn_Num);
@@ -206,6 +213,7 @@ public class MyInfo {
 				System.out.println();
 			}
 			//번호 클릭후 여부 변경 메소드
+			System.out.println("+++++++++++++++++++++++++++++++++++++++");
 			System.out.println("탈퇴 여부 바꿀 계정이 있으신가요?? (있을시 해당 번호 입력, 없을시 -1)");
 			yn_Num= Util.scInt();
 			profChangeYn(yn_Num);
@@ -224,6 +232,7 @@ public class MyInfo {
 			pstmt.setInt(1, Num);
 			pstmt.executeUpdate();
 			rs.next();
+			System.out.println("+++++++++++++++++++++++++++++++++++++++");
 			System.out.println("학생 계정 탈퇴 여부 변경 되었습니다. ");
 			System.out.println("종료 하겠습니다.");
 			//번호 클릭후 여부 변경 메소드
@@ -242,6 +251,7 @@ public class MyInfo {
 			pstmt.setInt(1, Num);
 			pstmt.executeUpdate();
 			rs.next();
+			System.out.println("+++++++++++++++++++++++++++++++++++");
 			System.out.println("교수 계정 탈퇴 여부 변경 되었습니다. ");
 			System.out.println("종료 하겠습니다.");
 			//번호 클릭후 여부 변경 메소드
@@ -251,6 +261,7 @@ public class MyInfo {
 	}
 
 	public static void selectnum() {
+		System.out.println("+++++++++++++++ 계정 관리 +++++++++++++++");
 		System.out.println("1. 학생 계정 관리");
 		System.out.println("2. 교수 계정 관리");
 		System.out.println("0. 뒤로가기");

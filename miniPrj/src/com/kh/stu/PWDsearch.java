@@ -11,7 +11,7 @@ import com.kh.util.Util;
 public class PWDsearch {
 
 	public static void try_PWDFind() {
-		System.out.println("==== 비밀번호를 찾으려는 계정을 선택해주세요. ====");
+		System.out.println("++++++++++ 비밀번호를 찾으려는 계정을 선택해주세요. ++++++++++");
 		System.out.println("1. 학생  2. 교수");
 		int num = Util.scInt();
 		if (num == 1) {
@@ -25,7 +25,7 @@ public class PWDsearch {
 	}
 
 	private static void stu_PWDFind() {
-		System.out.println("==== 비밀번호 찾기 ====");
+		System.out.println("++++++++++ 학생 계정 비밀번호 찾기 ++++++++++");
 		System.out.print("이름 : ");
 		String name = Util.sc.nextLine().trim();
 		System.out.print("전화번호 ex)010-0000-0000 : ");
@@ -66,7 +66,7 @@ public class PWDsearch {
 	}
 
 	private static void prof_PWDFind() {
-		System.out.println("==== 비밀번호 찾기 ====");
+		System.out.println("++++++++++ 교수 계정 비밀번호 찾기 ++++++++++");
 		System.out.print("이름 : ");
 		String name = Util.sc.nextLine().trim();
 		System.out.print("전화번호 ex)010-0000-0000 : ");
