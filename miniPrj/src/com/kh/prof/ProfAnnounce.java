@@ -23,13 +23,13 @@ public class ProfAnnounce {
 	public void board() {
 		while (true) {
 
-			System.out.println("==== 학사 공지 ====");
+			System.out.println("\n+++++++++++++++ 학사 공지 +++++++++++++++");
 			System.out.println("1. 공지사항 목록");
 			System.out.println("2. 공지사항 작성");
 			System.out.println("3. 공지사항 삭제");
 			System.out.println("4. 공지사항 수정");
 			System.out.println("5. 뒤로가기");
-
+			System.out.print(">>원하시는 메뉴의 번호를 선택하세요 : ");
 			input = Util.scInt();
 
 			switch (input) {
@@ -59,7 +59,7 @@ public class ProfAnnounce {
 	// 학생 학사공지 목록
 	public void boardStu() {
 		while (true) {
-			System.out.println("==== 학사 공지 ====");
+			System.out.println("\n+++++++++++++++ 학사 공지 +++++++++++++++");
 			System.out.println("1. 공지사항 목록");
 			System.out.println("2. 뒤로가기");
 
@@ -96,13 +96,13 @@ public class ProfAnnounce {
 
 			rs = pstmt.executeQuery();
 
-			System.out.println("\n 순서 " + "|" + "  작성일  " + "|" + "       제  목       ");
+			System.out.println("\n[전체목록]");
+			System.out.println(" 순서 " + "|" + "  작성일  " + "|" + "       제  목       ");
 			System.out.println("===================================");
 			while (rs.next()) {
 				int proNo = rs.getInt("순서");// 글번호
 				String proDate = rs.getString("작성일");
 				String proTitle = rs.getString("글제목");
-
 				System.out.print("  " + proNo + "  ");
 				System.out.print("|");
 				System.out.print(proDate);
@@ -110,14 +110,14 @@ public class ProfAnnounce {
 				System.out.print(proTitle);
 				System.out.println("\n-----------------------------------");
 			}
-			System.out.println("===================================");
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		// 1-2 공지사항 선택해서 읽기 ******실행 OK
-		System.out.println(">>원하는 글의 번호 선택하세요(뒤로가기 : 0)");
+		System.out.print(">>원하는 글의 번호 선택하세요 (뒤로가기 : 0) : ");
 		pno = Util.scInt();
 
 		ResultSet rs2 = null;
@@ -128,16 +128,16 @@ public class ProfAnnounce {
 			pstmt2.setInt(1, pno);
 
 			rs2 = pstmt2.executeQuery();
-
+		
 			while (rs2.next()) {
-				System.out.println("\n 글번호 " + "|" + "  작성일  " + "|" + "      내 용         ");
-				System.out.println("-----------------------------------");
+				System.out.println("\n 글번호 " + "|" + "  작성일  " + "|" + "          내    용         ");
+				System.out.println("============================================");
 				System.out.print("   " + rs2.getInt("글번호") + "  ");
 				System.out.print("|");
 				System.out.print(rs2.getString("작성일"));
 				System.out.print("|");
 				System.out.print(rs2.getString("글내용"));
-				System.out.println("\n===================================\n");
+				System.out.println("\n============================================\n");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -159,10 +159,10 @@ public class ProfAnnounce {
 		// DB얻기
 		Connection conn = OracleDB.getConnection();
 		// 글작성 얻기
-		System.out.println("====공지사항 작성 ====");
-		System.out.println("글제목 : ");
+		System.out.println("\n+++++++++++++++ 공지사항 작성 +++++++++++++++");
+		System.out.print("글제목 : ");
 		String title = Util.sc.nextLine();
-		System.out.println("내  용 : ");
+		System.out.print("내  용 : ");
 		String content = Util.sc.nextLine();
 
 		// DB얻어놓음
@@ -180,7 +180,7 @@ public class ProfAnnounce {
 			int result = pstmt.executeUpdate();
 
 			if (result == 1) {
-				System.out.println("공지작성 완료 !!!");
+				System.out.println("\n공지작성 완료 !!!\n");
 			} else
 				System.out.println("공지작성 실패 ...");
 
@@ -205,11 +205,11 @@ public class ProfAnnounce {
 		// DB얻어놓음
 		Connection conn = OracleDB.getConnection();
 
-		System.out.println("====공지사항 삭제====");
+		System.out.println("\n+++++++++++++++ 공지사항 삭제 +++++++++++++++");
 		// 글목록 보여주기
 		boardlist();
 		// 글 선택(PRO_NO로 선택)
-		System.out.println("\n>>삭제하실 글번호를 입력하세요.");
+		System.out.print(">>삭제하실 글번호를 입력하세요 : ");
 		int input = Util.scInt();
 
 		// 삭제쿼리날리기
@@ -222,11 +222,11 @@ public class ProfAnnounce {
 			int result = pstmt.executeUpdate();
 
 			if (result == 1) {
-				System.out.println("공지삭제 완료 !!!");
+				System.out.println("\n공지삭제 완료 !!!");
 			} else
-				System.out.println("공지삭제 실패 ...");
+				System.out.println("\n공지삭제 실패 ...");
 		} catch (SQLException e) {
-			System.out.println("공지삭제 실패 ...");
+			System.out.println("\n공지삭제 실패 ...");
 			e.printStackTrace();
 		} finally {
 			OracleDB.close(conn);
@@ -245,14 +245,14 @@ public class ProfAnnounce {
 		}
 		// DB얻기
 		Connection conn = OracleDB.getConnection();
-		System.out.println("====공지사항 수정 ====");
+		System.out.println("+++++++++++++++ 공지사항 수정 +++++++++++++++");
 		// 글목록 보여주기
 		boardlist();
 
 		// 수정내용 얻기
-		System.out.println("수정하려는 글번호 선택하세요");
+		System.out.print(">>수정하려는 글번호 선택하세요 : ");
 		int pnoUp = Util.scInt();
-		System.out.println("\n" + "수정 내용을 입력하세요.");
+		System.out.println("\n" + "수정 내용을 입력하세요");
 		System.out.print(">>>");
 		String upcont = Util.sc.nextLine();
 
@@ -266,9 +266,9 @@ public class ProfAnnounce {
 			ptst.setInt(2, pnoUp);
 			int rs = ptst.executeUpdate();
 			if (rs == 1) {
-				System.out.println("공지사항 수정완료 !!!");
+				System.out.println("\n공지사항 수정완료 !!!\n");
 			} else {
-				System.out.println("공지사항 수정실패 ...");
+				System.out.println("\n공지사항 수정실패 ...\n");
 			}
 
 		} catch (SQLException e) {
