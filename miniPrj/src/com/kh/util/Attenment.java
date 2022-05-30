@@ -107,12 +107,14 @@ public class Attenment {
 			System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 			System.out.println("\n 순서 " + "|" + "  강의명  " + "|" + "   학생명   ");
 			System.out.println("===================================");
+			rs2.next();
+			int cnt = 0;
 			while (rs.next()) {
 				String cname = null;
-				if (rs2.next()) {
-					cname = rs2.getString(1);
-				}
-				int cnt = 0;
+				
+				cname = rs2.getString(1);
+				
+				
 				cnt ++;
 				String stuname = rs.getString(1);
 				System.out.print("  " + cnt + "     ");

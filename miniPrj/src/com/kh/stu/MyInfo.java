@@ -75,7 +75,7 @@ public class MyInfo {
 		System.out.println(Util.infono + " 입니다.");
 		System.out.println("=====================");
 		System.out.print("나의 가입날짜는 ");
-		stu_showMyEnroll(); // 학생 가입날짜 출력
+		prof_showMyEnroll(); 
 		System.out.println("=====================");
 		System.out.println("1. 뒤로가기  3. 탈퇴하기");
 		System.out.println("+++++++++++++++++++++");

@@ -176,6 +176,15 @@ public class Login {
 					Util.infono = rs.getInt(2);
 					Util.info = "Admin";
 					new AdminScreen().adminscreen();
+				} else {
+					System.out.println("+++++++++++++++++++++++++++++++++++");
+					System.out.println("로그인 실패! 다시시도(Y/N)");
+					String loginyn = Util.sc.nextLine();
+					if (loginyn.equals("Y") || loginyn.equals("y")) {
+						admin_Login();
+					}else {
+						try_login();
+					}
 				}
 			} else {
 				System.out.println("+++++++++++++++++++++++++++++++++++");
