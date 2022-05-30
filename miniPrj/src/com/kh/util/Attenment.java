@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.kh.admin.AdminScreen;
 import com.kh.db.OracleDB;
+import com.kh.lecture.SignUp;
 
 public class Attenment {
 	// 학생 출석 체크
@@ -14,7 +15,9 @@ public class Attenment {
 	public static void stuAttin() {
 		Connection conn = OracleDB.getConnection();
 		PreparedStatement psm = null;
-
+		
+		SignUp.showStdSignUp(Util.infono);
+		
 		System.out.println("++++++++++ 출석 체크 ++++++++++");
 		System.out.print("강의명 입력 : ");
 		String c_name = Util.sc.nextLine();

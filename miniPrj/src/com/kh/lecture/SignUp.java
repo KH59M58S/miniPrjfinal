@@ -146,7 +146,8 @@ public class SignUp {
 		ResultSet rs = null;
 
 		String sql = "SELECT C.C_NO, C_NAME, C.C_TIME, C.C_ROOM, P.P_NAME " + "FROM CLASS C " + "INNER JOIN PROF P "
-				+ "ON (C.P_NO = P.P_NO) ";
+				+ "ON (C.P_NO = P.P_NO)"
+				+ "ORDER BY C.C_NO ASC ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);

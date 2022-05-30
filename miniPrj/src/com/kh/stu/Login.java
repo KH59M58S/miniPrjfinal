@@ -46,11 +46,12 @@ public class Login {
 		ResultSet rs = null;
 
 		// 해당 아이디에 맞는 패스워드 DB에서 조회하기 SELECT = executeQuery();
-		String sql = "SELECT STU_PWD, STU_NO FROM STUDENT WHERE STU_ID = ? AND STU_QUIT_YN = 'N'";
+		String sql = "SELECT STU_PWD, STU_NO, STU_ID FROM STUDENT WHERE STU_ID = ? AND STU_QUIT_YN = 'N'";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
+			
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
@@ -61,6 +62,16 @@ public class Login {
 					Util.infono = rs.getInt(2);
 					Util.info = "Student";
 					stuMenu.showMenu();
+				} else {
+					System.out.println("+++++++++++++++++++++++++++++++++++");
+					System.out.println("로그인 실패!");
+					System.out.println("탈퇴된 계정이거나 비밀번호 오류입니다. 다시시도(Y/N)");
+					String loginyn = Util.sc.nextLine();
+					if (loginyn.equals("Y") || loginyn.equals("y")) {
+						stu_Login();
+					}else {
+						try_login();
+					}
 				}
 			} else {
 				System.out.println("+++++++++++++++++++++++++++++++++++");
